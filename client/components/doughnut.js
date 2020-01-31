@@ -32,4 +32,15 @@ class DoughnutChartComponent extends Component {
   }
 }
 
+// const mapStateToProps = state => ({
+//   columns: state.data.columns,
+//   columnData: state.data.columnData
+// })
+
+// mapDispatchToProps = dispatch => {
+//   return {
+//     loadColumns: () => dispatch(columns())
+//   }
+// }
+
 export default DoughnutChartComponent

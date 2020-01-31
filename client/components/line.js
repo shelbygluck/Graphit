@@ -1,11 +1,17 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
 
+let columns = ['STATE', 'AGE']
+let columnData = {
+  STATE: ['OH', 'IN', 'SC', 'OH', 'AR', 'AZ', 'AK', 'WA', 'UT', 'WA'],
+  AGE: ['37', '28', '65', '41', '23', '54', '52', '44', '61', '39']
+}
+
 export default class LineChart extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      labels: ['January', 'February', 'March', 'April', 'May'],
+      labels: columnData[columns[0]],
       datasets: [
         {
           label: 'Rainfall',
@@ -14,7 +20,7 @@ export default class LineChart extends React.Component {
           backgroundColor: 'rgba(75,192,192,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
-          data: [65, 59, 80, 81, 56]
+          data: columnData[columns[1]]
         }
       ]
     }
