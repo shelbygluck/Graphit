@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import PieChartComponent from './components/pie'
 import {me} from './store'
-
+import Main from './components/main'
 /**
  * COMPONENT
  */
@@ -22,15 +22,17 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/main" component={Main} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/pie" component={PieChartComponent} />
             <Route path="/home" component={UserHome} />
+            <Route path="/main" component={Main} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Main} />
       </Switch>
     )
   }
