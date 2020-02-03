@@ -1,17 +1,19 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
+import {connect} from 'react-redux'
+import {columnData} from '../store/data'
 
 let columns = ['STATE', 'AGE']
-let columnData = {
+let columnDataa = {
   STATE: ['OH', 'IN', 'SC', 'OH', 'AR', 'AZ', 'AK', 'WA', 'UT', 'WA'],
   AGE: ['37', '28', '65', '41', '23', '54', '52', '44', '61', '39']
 }
 
-export default class LineChart extends React.Component {
+export class LineChart extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      labels: columnData[columns[0]],
+      labels: columnDataa[columns[0]],
       datasets: [
         {
           label: 'Rainfall',
@@ -20,12 +22,18 @@ export default class LineChart extends React.Component {
           backgroundColor: 'rgba(75,192,192,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
-          data: columnData[columns[1]]
+          data: columnDataa[columns[1]]
         }
       ]
     }
   }
+
+  componentDidMount() {
+    this.props.loadColumnData(2)
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div>
         <Line
@@ -49,3 +57,15 @@ export default class LineChart extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  columnData: state.data.columnData
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadColumnData: () => dispatch(columnData(2))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LineChart)

@@ -62,6 +62,7 @@ async function seed() {
         },
         {NAME: 'Henry Wise', DATE: '10/16/1919', AGE: '39', STATE: 'WA'}
       ],
+      selectedColumns: ['AGE', 'STATE'],
       userId: 2
     }),
     UserData.create({
@@ -80,6 +81,7 @@ async function seed() {
         },
         {NAME: 'Henry Wise', DATE: '10/16/1919', AGE: '39', STATE: 'WA'}
       ],
+      selectedColumns: ['AGE', 'STATE'],
       userId: 1
     })
   ])

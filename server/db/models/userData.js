@@ -10,6 +10,9 @@ const UserData = db.define('userData', {
     set: function(val) {
       return this.setDataValue('rawData', JSON.stringify(val))
     }
+  },
+  selectedColumns: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
