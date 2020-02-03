@@ -13,7 +13,7 @@ export class LineChart extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      labels: columnDataa[columns[0]],
+      labels: this.props.columnData[this.props.columns[0]],
       datasets: [
         {
           label: 'Rainfall',
@@ -22,7 +22,7 @@ export class LineChart extends React.Component {
           backgroundColor: 'rgba(75,192,192,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
-          data: columnDataa[columns[1]]
+          data: this.props.columnData[this.props.columns[1]]
         }
       ]
     }
@@ -33,7 +33,7 @@ export class LineChart extends React.Component {
   }
 
   render() {
-    console.log('PROPS:', this.props)
+    console.log(this.props.columnData[this.props.columns[0]], 'LABELS')
     return (
       <div>
         <Line
@@ -60,7 +60,8 @@ export class LineChart extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  columnData: state.data
+  columnData: state.data.columnData,
+  columns: state.data.columns
 })
 
 const mapDispatchToProps = dispatch => {
