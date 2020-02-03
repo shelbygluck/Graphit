@@ -24,22 +24,38 @@ const getColumnData = columnData => ({type: GET_COLUMN_DATA, columnData})
 /**
  * THUNK CREATORS
  */
-export const columns = jsondata => dispatch => {
+export const columns = userId => async dispatch => {
   try {
-    let keys = Object.keys(jsondata[0])
-    dispatch(getColumns(keys))
+    // let keys = Object.keys(jsondata[0])
+    let res = await axios.get(`/api/userData/${userId}`)
+    let selectedColumns = res.data.selectedColumns
+    dispatch(getColumns(selectedColumns))
   } catch (err) {
     console.error(err)
   }
 }
 
-export const columnData = (jsondata, columnNames) => dispatch => {
+export const columnData = userId => async dispatch => {
+  console.log('GOT HERE')
   try {
     let dict = {}
+
+    let res = await axios.get(`/api/userData/${userId}`)
+
+    console.log('res:', res)
+    console.log('res.data:', res.data[0])
+
+    let columnNames = res.data[0].selectedColumns
+
+    console.log('COLUMN NAMES:', columnNames)
 
     columnNames.forEach(key => {
       dict[key] = []
     })
+
+    let jsondata = res.data[0].rawData
+
+    console.log('JSON:', jsondata)
 
     jsondata.forEach(obj => {
       for (let key in obj) {
@@ -48,6 +64,8 @@ export const columnData = (jsondata, columnNames) => dispatch => {
         }
       }
     })
+
+    console.log('DICT:', dict)
 
     dispatch(getColumnData(dict))
   } catch (error) {
