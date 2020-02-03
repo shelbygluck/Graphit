@@ -11,7 +11,7 @@ router.post('/', upload, async (req, res, next) => {
     columns: true, //infers that first line is column names
     skip_empty_lines: true
   })
-  console.log(jsonData)
+  console.log(typeof jsonData)
 
   res.send('data posted!')
 })
