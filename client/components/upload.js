@@ -8,24 +8,30 @@ export default class Upload extends React.Component {
     super()
     this.state = {
       columns: null,
-      selectedFile: null
+      selectedFile: null,
+      parsedData: null
     }
   }
 
   handleFileUpload = event => {
     const file = event.target.files[0]
-
+    console.log('event.target.files', file)
+    this.setState({
+      selectedFile: file
+    })
     Papa.parse(file, {
+      header: true,
       complete: results => {
         this.getParsedData(results.data)
+        console.log('papa parsed data', results.data)
       }
     })
   }
 
   getParsedData = parsedData => {
     this.setState({
-      columns: parsedData[0],
-      selectedFile: parsedData
+      columns: Object.keys(parsedData[0]),
+      parsedData: parsedData
     })
   }
 
@@ -41,6 +47,7 @@ export default class Upload extends React.Component {
         data: formData,
         headers: {'Content-Type': 'multipart/form-data'}
       })
+      //const {data} = await axios.post('/api/charts', this.state.selectedFile)
       console.log(data)
     } catch (err) {
       console.log(err)
