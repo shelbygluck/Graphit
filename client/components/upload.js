@@ -1,9 +1,11 @@
 import React, {Fragment} from 'react'
+import {connect} from 'react-redux'
 import Papa from 'papaparse'
 import axios from 'axios'
 import Columns from './columns'
+import {gotParsedData} from '../store/data'
 
-export default class Upload extends React.Component {
+class Upload extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -33,12 +35,14 @@ export default class Upload extends React.Component {
       columns: Object.keys(parsedData[0]),
       parsedData: parsedData
     })
+    this.props.gotParsedData(parsedData)
   }
 
   handleFileSubmit = async event => {
     event.preventDefault()
     let formData = new FormData()
     formData.append('file', this.state.selectedFile)
+    formData.append('selectedColumns')
 
     try {
       const {data} = await axios({
@@ -47,7 +51,6 @@ export default class Upload extends React.Component {
         data: formData,
         headers: {'Content-Type': 'multipart/form-data'}
       })
-      //const {data} = await axios.post('/api/charts', this.state.selectedFile)
       console.log(data)
     } catch (err) {
       console.log(err)
@@ -73,3 +76,14 @@ export default class Upload extends React.Component {
     )
   }
 }
+
+const mapState = state => ({
+  parsedData: state.data.parsedData,
+  selectedColumns: state.data.columns
+})
+
+const mapDispatch = dispatch => ({
+  gotParsedData: data => dispatch(gotParsedData(data))
+})
+
+export default connect(mapState, mapDispatch)(Upload)
