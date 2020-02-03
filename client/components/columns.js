@@ -4,16 +4,17 @@ class Columns extends React.Component {
   constructor() {
     super()
     this.state = {
-      numberOfOptions: 2,
-      selectedColumns: []
+      numberOfOptions: 2
     }
   }
 
-  handleOptionSelection(event) {
-    console.log(event.target)
+  handleOnSelect = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
-  createOptions(columns) {
+  createOptions = columns => {
     let options = []
     for (let i = 0; i < this.state.numberOfOptions; i++) {
       options[i] = []
@@ -30,15 +31,16 @@ class Columns extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     const lists = this.createOptions(this.props.columns)
     if (lists.length < 0)
       return <div>Could not get column names from the data set.</div>
     return (
       <div>
         {lists.map((list, idx) => {
-          const key = 'column' + idx
+          const key = `column${idx + 1}`
           return (
-            <select key={key} onChange={this.handleOptionSelection}>
+            <select name={key} key={key} onChange={this.handleOnSelect}>
               {list}
             </select>
           )

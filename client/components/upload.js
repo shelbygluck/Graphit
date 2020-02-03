@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import Papa from 'papaparse'
+import axios from 'axios'
 import Columns from './columns'
 
 export default class Upload extends React.Component {
@@ -9,12 +10,9 @@ export default class Upload extends React.Component {
       columns: null,
       selectedFile: null
     }
-
-    this.handleFileUpload = this.handleFileUpload.bind(this)
-    this.handleFileSubmit = this.handleFileSubmit.bind(this)
   }
 
-  handleFileUpload(event) {
+  handleFileUpload = event => {
     const file = event.target.files[0]
 
     Papa.parse(file, {
@@ -24,23 +22,29 @@ export default class Upload extends React.Component {
     })
   }
 
-  getParsedData(parsedData) {
+  getParsedData = parsedData => {
     this.setState({
       columns: parsedData[0],
       selectedFile: parsedData
     })
   }
 
-  async handleFileSubmit(event) {
+  handleFileSubmit = async event => {
     event.preventDefault()
     let formData = new FormData()
     formData.append('file', this.state.selectedFile)
 
-    // try {
-    //   await axios.post('/api/charts', formData)
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    try {
+      const {data} = await axios({
+        method: 'post',
+        url: '/api/charts',
+        data: formData,
+        headers: {'Content-Type': 'multipart/form-data'}
+      })
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
