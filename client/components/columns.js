@@ -1,17 +1,22 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {gotColumns} from '../store/data'
 
 class Columns extends React.Component {
   constructor() {
     super()
     this.state = {
-      numberOfOptions: 2
+      numberOfOptions: 2,
+      columns: []
     }
   }
 
   handleOnSelect = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+    let columns = this.state.columns
+    const idx = Number(event.target.name)
+    columns[idx] = event.target.value
+    this.props.gotColumns(columns)
+    this.setState({columns})
   }
 
   createOptions = columns => {
@@ -40,7 +45,7 @@ class Columns extends React.Component {
         {lists.map((list, idx) => {
           const key = `column${idx + 1}`
           return (
-            <select name={key} key={key} onChange={this.handleOnSelect}>
+            <select name={idx} key={key} onChange={this.handleOnSelect}>
               {list}
             </select>
           )
@@ -50,4 +55,8 @@ class Columns extends React.Component {
   }
 }
 
-export default Columns
+const mapDispatch = dispatch => ({
+  gotColumns: columns => dispatch(gotColumns(columns))
+})
+
+export default connect(null, mapDispatch)(Columns)

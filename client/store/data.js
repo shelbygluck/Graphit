@@ -5,22 +5,25 @@ import {combineReducers} from 'redux'
 /**
  * ACTION TYPES
  */
-const GET_COLUMNS = 'GET_COLUMNS'
+const GOT_COLUMNS = 'GOT_COLUMNS'
 const GET_COLUMN_DATA = 'GET_COLUMN_DATA'
+const GOT_PARSED_DATA = 'GOT_PARSED_DATA'
 
 /**
  * INITIAL STATE
  */
 const defaultState = {
   columns: [],
-  columnData: {}
+  columnData: {},
+  parsedData: []
 }
 
 /**
  * ACTION CREATORS
  */
-const getColumns = columns => ({type: GET_COLUMNS, columns})
+export const gotColumns = columns => ({type: GOT_COLUMNS, columns})
 const getColumnData = columnData => ({type: GET_COLUMN_DATA, columnData})
+export const gotParsedData = parsedData => ({type: GOT_PARSED_DATA, parsedData})
 
 /**
  * THUNK CREATORS
@@ -67,7 +70,7 @@ export const columnData = userId => async dispatch => {
 
     dispatch(getColumnData(dict))
     //console.log('COLUMN NAMES:', columnNames)
-    dispatch(getColumns(columnNames))
+    dispatch(gotColumns(columnNames))
   } catch (error) {
     console.error(error)
   }
@@ -78,7 +81,7 @@ export const columnData = userId => async dispatch => {
  */
 const columnReducer = (state = defaultState.columns, action) => {
   switch (action.type) {
-    case GET_COLUMNS:
+    case GOT_COLUMNS:
       return action.columns
     default:
       return state
@@ -94,7 +97,17 @@ const colummnDataReducer = (state = defaultState.columnData, action) => {
   }
 }
 
+const parsedDataReducer = (state = defaultState.parsedData, action) => {
+  switch (action.type) {
+    case GOT_PARSED_DATA:
+      return action.parsedData
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   columns: columnReducer,
-  columnData: colummnDataReducer
+  columnData: colummnDataReducer,
+  parsedData: parsedDataReducer
 })
