@@ -33,7 +33,7 @@ export class LineChart extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log('PROPS:', this.props)
     return (
       <div>
         <Line
@@ -59,12 +59,13 @@ export class LineChart extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  columnData: state.data.columnData
+  user: state.user,
+  columnData: state.data
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadColumnData: () => dispatch(columnData(2))
+    loadColumnData: id => dispatch(columnData(id))
   }
 }
 
