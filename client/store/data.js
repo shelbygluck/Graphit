@@ -37,6 +37,7 @@ export const columns = userId => async dispatch => {
 
 export const columnData = userId => async dispatch => {
   console.log('GOT HERE')
+
   try {
     let dict = {}
 
@@ -47,15 +48,11 @@ export const columnData = userId => async dispatch => {
 
     let columnNames = res.data[0].selectedColumns
 
-    console.log('COLUMN NAMES:', columnNames)
-
     columnNames.forEach(key => {
       dict[key] = []
     })
 
     let jsondata = res.data[0].rawData
-
-    console.log('JSON:', jsondata)
 
     jsondata.forEach(obj => {
       for (let key in obj) {
@@ -68,6 +65,8 @@ export const columnData = userId => async dispatch => {
     console.log('DICT:', dict)
 
     dispatch(getColumnData(dict))
+    // console.log('COLUMN NAMES:', columnNames)
+    // dispatch(columns(columnNames))
   } catch (error) {
     console.error(error)
   }
