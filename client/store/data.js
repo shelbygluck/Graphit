@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {combineReducers} from 'redux'
 
 /**
  * ACTION TYPES
@@ -11,7 +12,7 @@ const GET_COLUMN_DATA = 'GET_COLUMN_DATA'
  * INITIAL STATE
  */
 const defaultState = {
-  colums: [],
+  columns: [],
   columnData: {}
 }
 
@@ -62,11 +63,11 @@ export const columnData = userId => async dispatch => {
       }
     })
 
-    console.log('DICT:', dict)
+    //console.log('DICT:', dict)
 
     dispatch(getColumnData(dict))
-    // console.log('COLUMN NAMES:', columnNames)
-    // dispatch(columns(columnNames))
+    //console.log('COLUMN NAMES:', columnNames)
+    dispatch(getColumns(columnNames))
   } catch (error) {
     console.error(error)
   }
@@ -75,13 +76,25 @@ export const columnData = userId => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultState, action) {
+const columnReducer = (state = defaultState.columns, action) => {
   switch (action.type) {
     case GET_COLUMNS:
       return action.columns
+    default:
+      return state
+  }
+}
+
+const colummnDataReducer = (state = defaultState.columnData, action) => {
+  switch (action.type) {
     case GET_COLUMN_DATA:
       return action.columnData
     default:
       return state
   }
 }
+
+export default combineReducers({
+  columns: columnReducer,
+  columnData: colummnDataReducer
+})
