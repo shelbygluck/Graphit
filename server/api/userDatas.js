@@ -21,10 +21,11 @@ router.get('/:userId', async (req, res, next) => {
   try {
     const userDatas = await UserData.findAll({
       where: {
-        userId: req.params.userId
+        userId: req.user.id
       }
     })
-    res.json(userDatas)
+    const newestEntry = userDatas[userDatas.length - 1]
+    res.send(newestEntry)
   } catch (err) {
     next(err)
   }
