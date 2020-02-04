@@ -32,8 +32,9 @@ export const columns = userId => async dispatch => {
   try {
     // let keys = Object.keys(jsondata[0])
     let res = await axios.get(`/api/userData/${userId}`)
+    console.log('singe entry START', res.data, 'single entry nEND')
     let selectedColumns = res.data.selectedColumns
-    dispatch(getColumns(selectedColumns))
+    dispatch(gotColumns(selectedColumns))
   } catch (err) {
     console.error(err)
   }
@@ -46,15 +47,15 @@ export const columnData = userId => async dispatch => {
     let res = await axios.get(`/api/userData/${userId}`)
 
     console.log('res:', res)
-    console.log('res.data:', res.data[0])
+    console.log('res.data:', res.data.selectedColumns)
 
-    let columnNames = res.data[0].selectedColumns
+    let columnNames = res.data.selectedColumns
 
     columnNames.forEach(key => {
       dict[key] = []
     })
 
-    let jsondata = res.data[0].rawData
+    let jsondata = res.data.rawData
 
     jsondata.forEach(obj => {
       for (let key in obj) {
