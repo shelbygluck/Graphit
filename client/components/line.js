@@ -10,36 +10,48 @@ let columnDataa = {
 }
 
 export class LineChart extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      labels: this.props.columnData[this.props.columns[0]],
-      datasets: [
-        {
-          label: 'Rainfall',
-          fill: false,
-          lineTension: 0.5,
-          backgroundColor: 'rgba(75,192,192,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
-          data: this.props.columnData[this.props.columns[1]]
-        }
-      ]
-    }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     labels: this.props.columnData[this.props.columns[0]],
+  //     datasets: [
+  //       {
+  //         label: 'Rainfall',
+  //         fill: false,
+  //         lineTension: 0.5,
+  //         backgroundColor: 'rgba(75,192,192,1)',
+  //         borderColor: 'rgba(0,0,0,1)',
+  //         borderWidth: 2,
+  //         data: this.props.columnData[this.props.columns[1]]
+  //       }
+  //     ]
+  //   }
+  // }
 
   componentDidMount() {
-    this.props.loadColumnData(2)
+    let userId = this.props.user.id
+    this.props.loadColumnData(userId)
   }
 
   render() {
-    console.log(this.props.columnData[this.props.columns[0]], 'LABELS')
+    console.log(this.props.columnData[this.props.columns[1]], 'LABELS')
+    console.log(this.props.columnData[this.props.columns[0]], 'DATA')
     return (
       <div>
         <Line
           data={{
-            labels: this.state.labels,
-            datasets: this.state.datasets
+            labels: this.props.columnData[this.props.columns[1]],
+            datasets: [
+              {
+                label: 'Rainfall',
+                fill: false,
+                lineTension: 0.5,
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: this.props.columnData[this.props.columns[0]]
+              }
+            ]
           }}
           options={{
             title: {

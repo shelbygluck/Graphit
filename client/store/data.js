@@ -40,8 +40,6 @@ export const columns = userId => async dispatch => {
 }
 
 export const columnData = userId => async dispatch => {
-  console.log('GOT HERE')
-
   try {
     let dict = {}
 
