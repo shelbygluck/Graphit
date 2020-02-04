@@ -15,14 +15,16 @@ install:
 before_script:
   - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
-  - npm test             # test the code
+  - npm test # test the code
   - npm run build-client # make the bundle
-
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: gh2graphit
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: Ifn5qtsZKHw4cmnu2/m6c4HThgqwq+Oq4VW8QcXlTtdyixTrzTU0orQgbFq0TnjoY5iUTtYRNYcvtHob8pyB7I8aYfOOR+q8MbRE5qDJRZi2L8vrYa/toezGTN9IB2VrBpu/hKgLOYJcGQHe+z8Xb8lBHjKkrA1XKGtS+MEYQ733LoNCZUxtp6J6UMGBFs5yRtlgwRf5UnWpEuDNBkWBQ9MhdG4VkZFz4PDjC3/D/IoC7V6iTsYAhVpRQADjbvkReza2K/CFEpZerGhfn/vDR5VG6CH2YkShvIi3Pdd7cPItEUkKPLGVdLBqYbx1mevTvkaF/PMskksfEDUN4sJyIIp/ewwEpnA4Weg2e2dVpbUmgWuQWEdz8w+P9IUx3Q0tQEbAcxtfJZ5vyzjnKK2ClVKuZ3yDpzIaQ0I81hXOASsjTKwUgH7NNXdGVQAlwfbUQrxZWz1rpN31vW77ei5AxvbMvZ3lof2LhGEkdFbmqKak3ek3dAloDDKSsx2WzSOlKgQFVIC9NYraC0odN2Jhe7ztXI9zbqZfMZ68U2ZyA3H4zJY4/fgTISbqjthxLjmcxGQuSpKJPSsVDibfRrnRpFPoS5QWZlLuXdrvgQWcxpCA+UgOAeElQ/JeTr4DuMWB4k0y57y2l4ZKDL6uTe0B7bN04vEr79roXZTR69kDuqc=
