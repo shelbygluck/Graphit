@@ -24,6 +24,7 @@ router.get('/:userId', async (req, res, next) => {
         userId: req.user.id
       }
     })
+    console.log('teast')
     const newestEntry = userDatas[userDatas.length - 1]
     res.send(newestEntry)
   } catch (err) {
