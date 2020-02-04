@@ -42,7 +42,7 @@ class Upload extends React.Component {
     event.preventDefault()
     let formData = new FormData()
     formData.append('file', this.state.selectedFile)
-    formData.append('selectedColumns')
+    formData.append('selectedColumns', this.props.selectedColumns)
 
     try {
       const {data} = await axios({
