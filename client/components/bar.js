@@ -1,28 +1,47 @@
 import React, {Component} from 'react'
 import {Bar} from 'react-chartjs-2'
+import {connect} from 'react-redux'
+import {columnData} from '../store/data'
 
-class BarGraphComponent extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      labels: ['January', 'February', 'March', 'April', 'May'],
-      datasets: [
-        {
-          label: 'Rainfall',
-          backgroundColor: 'rgba(75,192,192,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
-          data: [65, 59, 80, 81, 56]
-        }
-      ]
-    }
+export class BarGraphComponent extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     labels: ['January', 'February', 'March', 'April', 'May'],
+  //     datasets: [
+  //       {
+  //         label: 'Rainfall',
+  //         backgroundColor: 'rgba(75,192,192,1)',
+  //         borderColor: 'rgba(0,0,0,1)',
+  //         borderWidth: 2,
+  //         data: [65, 59, 80, 81, 56]
+  //       }
+  //     ]
+  //   }
+  // }
+  componentDidMount() {
+    this.props.loadColumnData(this.props.user.id)
   }
 
   render() {
+    console.log('LABELS', this.props.columnData[this.props.columns[1]])
+    console.log('DATA', this.props.columnData[this.props.columns[0]])
+
     return (
       <div>
         <Bar
-          data={this.state}
+          data={{
+            labels: this.props.columnData[this.props.columns[1]],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: this.props.columnData[this.props.columns[0]]
+              }
+            ]
+          }}
           height={50}
           options={{
             title: {
@@ -42,4 +61,16 @@ class BarGraphComponent extends Component {
   }
 }
 
-export default BarGraphComponent
+const mapStateToProps = state => ({
+  user: state.user,
+  columnData: state.data.columnData,
+  columns: state.data.columns
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadColumnData: id => dispatch(columnData(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BarGraphComponent)
