@@ -31,8 +31,6 @@ export class LineChart extends React.Component {
   }
 
   render() {
-    console.log(this.props.columnData[this.props.columns[1]], 'LABELS')
-    console.log(this.props.columnData[this.props.columns[0]], 'DATA')
     return (
       <div>
         <div className="divToPDF">
