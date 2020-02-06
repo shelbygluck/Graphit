@@ -4,25 +4,6 @@ import {connect} from 'react-redux'
 import {scatterData} from '../store/data'
 
 export class Scatterplot extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     labels: 'Scatter Dataset',
-  //     datasets: [
-  //       {
-  //         label: 'Rainfall',
-  //         data: [
-  //           {x: -10, y: 0},
-  //           {x: 0, y: 10},
-  //           {x: 10, y: 5},
-  //           {x: -2, y: 4}
-  //         ],
-  //         backgroundColor: ['red', 'blue', 'green', 'black']
-  //       }
-  //     ]
-  //   }
-  // }
-
   componentDidMount() {
     let userId = this.props.user.id
     this.props.loadColumnData(userId)

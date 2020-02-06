@@ -3,39 +3,19 @@ import {Line} from 'react-chartjs-2'
 import {connect} from 'react-redux'
 import {columnData} from '../store/data'
 
-let columns = ['STATE', 'AGE']
-let columnDataa = {
-  STATE: ['OH', 'IN', 'SC', 'OH', 'AR', 'AZ', 'AK', 'WA', 'UT', 'WA'],
-  AGE: ['37', '28', '65', '41', '23', '54', '52', '44', '61', '39']
-}
+// let columns = ['STATE', 'AGE']
+// let columnDataa = {
+//   STATE: ['OH', 'IN', 'SC', 'OH', 'AR', 'AZ', 'AK', 'WA', 'UT', 'WA'],
+//   AGE: ['37', '28', '65', '41', '23', '54', '52', '44', '61', '39']
+// }
 
 export class LineChart extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     labels: this.props.columnData[this.props.columns[0]],
-  //     datasets: [
-  //       {
-  //         label: 'Rainfall',
-  //         fill: false,
-  //         lineTension: 0.5,
-  //         backgroundColor: 'rgba(75,192,192,1)',
-  //         borderColor: 'rgba(0,0,0,1)',
-  //         borderWidth: 2,
-  //         data: this.props.columnData[this.props.columns[1]]
-  //       }
-  //     ]
-  //   }
-  // }
-
   componentDidMount() {
     let userId = this.props.user.id
     this.props.loadColumnData(userId)
   }
 
   render() {
-    console.log(this.props.columnData[this.props.columns[1]], 'LABELS')
-    console.log(this.props.columnData[this.props.columns[0]], 'DATA')
     return (
       <div>
         <Line
