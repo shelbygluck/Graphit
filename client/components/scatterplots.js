@@ -36,7 +36,9 @@ export class Scatterplot extends React.Component {
               labels: 'Scatter Dataset',
               datasets: [
                 {
-                  label: 'Rainfall',
+                  label: `${this.props.columns[0]} vs. ${
+                    this.props.columns[1]
+                  }`,
                   data: this.props.scatterData,
                   backgroundColor: [
                     'maroon',
@@ -59,7 +61,19 @@ export class Scatterplot extends React.Component {
                 xAxes: [
                   {
                     type: 'linear',
-                    position: 'bottom'
+                    position: 'bottom',
+                    scaleLabel: {
+                      display: true,
+                      labelString: this.props.columns[0]
+                    }
+                  }
+                ],
+                yAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      labelString: this.props.columns[1]
+                    }
                   }
                 ]
               }
