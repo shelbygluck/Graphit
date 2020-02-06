@@ -2,6 +2,7 @@ import axios from 'axios'
 import history from '../history'
 import {combineReducers} from 'redux'
 import {isUnique} from '../helpers.js/isUnique'
+import {average, sum} from '../helpers.js/averageAndSum'
 
 /**
  * ACTION TYPES
@@ -63,8 +64,11 @@ export const columnData = userId => async dispatch => {
           dict[key].push(obj[key])
         }
       }
-      console.log('DICT', dict, 'columnNames', columnNames)
     })
+    let summed = average(dict[columnNames[1]], dict[columnNames[0]])
+
+    dict[columnNames[0]] = summed[1]
+    dict[columnNames[1]] = summed[0]
 
     dispatch(getColumnData(dict))
     dispatch(gotColumns(columnNames))

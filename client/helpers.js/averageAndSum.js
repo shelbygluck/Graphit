@@ -27,7 +27,7 @@ const average = (arr1, arr2) => {
     console.log('key', key)
     console.log(dict[key].length)
     for (let j = 0; j < dict[key].length; j++) {
-      sum += dict[key][j]
+      sum += parseInt(dict[key][j])
     }
     console.log('here')
     labels.push(key)
@@ -49,7 +49,7 @@ const sum = (arr1, arr2) => {
     let key = keys[i]
     let summ = 0
     for (let j = 0; j < dict[key].length; j++) {
-      summ += dict[key][j]
+      summ += parseInt(dict[key][j])
     }
     labels.push(key)
     data.push(summ)
