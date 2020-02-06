@@ -27,7 +27,7 @@ const average = (arr1, arr2) => {
     console.log('key', key)
     console.log(dict[key].length)
     for (let j = 0; j < dict[key].length; j++) {
-      sum += dict[key][j]
+      sum += parseInt(dict[key][j])
     }
     console.log('here')
     labels.push(key)
@@ -39,7 +39,7 @@ const average = (arr1, arr2) => {
   return [labels, data]
 }
 
-const sum = (arr1, arr2) => {
+const sum = (arr1, arr2, columnNames) => {
   let dict = helper(arr1, arr2)
   let labels = []
   let data = []
@@ -49,22 +49,17 @@ const sum = (arr1, arr2) => {
     let key = keys[i]
     let summ = 0
     for (let j = 0; j < dict[key].length; j++) {
-      summ += dict[key][j]
+      summ += parseInt(dict[key][j])
     }
     labels.push(key)
     data.push(summ)
   }
+
   console.log('SUM')
   console.log(labels)
   console.log(data)
   return [labels, data]
 }
-
-let labels = ['NY', 'NY', 'NY', 'CT', 'CT', 'CT', 'OH']
-let data = [1, 2, 3, 4, 5, 6, 7]
-// sum(labels,data)
-average(labels, data)
-sum(labels, data)
 
 module.exports = {
   average,
