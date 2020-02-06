@@ -24,9 +24,6 @@ export class BarGraphComponent extends Component {
   }
 
   render() {
-    console.log('LABELS', this.props.columnData[this.props.columns[1]])
-    console.log('DATA', this.props.columnData[this.props.columns[0]])
-
     return (
       <div>
         <div className="divToPDF">
@@ -43,7 +40,7 @@ export class BarGraphComponent extends Component {
                 }
               ]
             }}
-            height={50}
+            height={100}
             options={{
               title: {
                 dispaly: true,

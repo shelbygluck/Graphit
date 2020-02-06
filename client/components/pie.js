@@ -50,7 +50,7 @@ export class PieChartComponent extends Component {
                 }
               ]
             }}
-            height={50}
+            height={100}
           />
           <br />
         </div>

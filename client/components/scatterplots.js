@@ -25,9 +25,6 @@ export class Scatterplot extends React.Component {
   }
 
   render() {
-    console.log(this.props, 'props here!!!')
-    console.log(typeof this.props.columns, 'COLUMNSSSS')
-
     return (
       <div>
         <div className="divToPDF">
@@ -40,19 +37,7 @@ export class Scatterplot extends React.Component {
                     this.props.columns[1]
                   }`,
                   data: this.props.scatterData,
-                  backgroundColor: [
-                    'maroon',
-                    'red',
-                    'orange',
-                    'yellow',
-                    'olive',
-                    'green',
-                    'blue',
-                    'navy',
-                    'purple',
-                    'fuchsia',
-                    'aqua'
-                  ]
+                  backgroundColor: 'navy'
                 }
               ]
             }}
