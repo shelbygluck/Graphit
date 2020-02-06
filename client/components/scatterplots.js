@@ -38,7 +38,19 @@ export class Scatterplot extends React.Component {
                 {
                   label: 'Rainfall',
                   data: this.props.scatterData,
-                  backgroundColor: ['red', 'blue', 'green', 'black', 'grey']
+                  backgroundColor: [
+                    'maroon',
+                    'red',
+                    'orange',
+                    'yellow',
+                    'olive',
+                    'green',
+                    'blue',
+                    'navy',
+                    'purple',
+                    'fuchsia',
+                    'aqua'
+                  ]
                 }
               ]
             }}
