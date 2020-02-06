@@ -2,42 +2,49 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {columnData} from '../store/data'
 import {Pie} from 'react-chartjs-2'
+import html2canvas from 'html2canvas'
+const pdfConverter = require('jspdf')
 
 export class PieChartComponent extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     labels: ['under 18', 'age 18-54', 'age 55+'],
-  //     datasets: [
-  //       {
-  //         data: [8000, 4000, 2850],
-  //         backgroundColor: ['red', 'blue', 'green']
-  //       }
-  //     ]
-  //   }
-  // }
-
   componentDidMount() {
     this.props.loadColumnData(this.props.user.id)
+  }
+
+  saveAsPDF() {
+    let input = window.document.getElementsByClassName('divToPDF')[0]
+    html2canvas(input)
+      .then(canvas => {
+        console.log(canvas)
+        const imgData = canvas.toDataURL('image/png')
+        const pdf = new pdfConverter('l', 'pt')
+        pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)
+        pdf.save('test.pdf')
+      })
+      .catch(err => console.log(err.message))
   }
 
   render() {
     return (
       <div>
-        <h1>Pie Chart</h1>
-        <Pie
-          data={{
-            labels: this.props.columnData[this.props.columns[1]],
-            datasets: [
-              {
-                data: this.props.columnData[this.props.columns[0]],
-                backgroundColor: ['red', 'blue', 'green']
-              }
-            ]
-          }}
-          height={50}
-        />
-        <br />
+        <div className="divToPDF">
+          <h1>Pie Chart</h1>
+          <Pie
+            data={{
+              labels: this.props.columnData[this.props.columns[1]],
+              datasets: [
+                {
+                  data: this.props.columnData[this.props.columns[0]],
+                  backgroundColor: ['red', 'blue', 'green']
+                }
+              ]
+            }}
+            height={50}
+          />
+          <br />
+        </div>
+        <div>
+          <button onClick={() => this.saveAsPDF()}>Save as PDF</button>
+        </div>
       </div>
     )
   }

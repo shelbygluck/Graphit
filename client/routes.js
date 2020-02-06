@@ -7,7 +7,6 @@ import PieChartComponent from './components/pie'
 import LineChart from './components/line'
 import ScatterPlot from './components/scatterplots'
 import BarGraphComponent from './components/bar'
-import DoughnutChartComponent from './components/doughnut'
 import {me} from './store'
 import Main from './components/main'
 /**
@@ -34,7 +33,6 @@ class Routes extends Component {
             <Route path="/line" component={LineChart} />
             <Route path="/scatterplots" component={ScatterPlot} />
             <Route path="/bar" component={BarGraphComponent} />
-            <Route path="/doughnut" component={DoughnutChartComponent} />
             <Route path="/home" component={UserHome} />
             <Route path="/main" component={Main} />
           </Switch>
