@@ -13,18 +13,23 @@ const helper = (labels, data) => {
   return dict
 }
 
-export const average = (arr1, arr2) => {
+const average = (arr1, arr2) => {
   let dict = helper(arr1, arr2)
   let labels = []
   let data = []
   let keys = Object.keys(dict)
+  console.log('HERE')
+  console.log(keys)
 
   for (let i = 0; i < keys.length; i++) {
     let key = keys[i]
     let sum = 0
-    for (let j = 0; i < dict[key].length; j++) {
+    console.log('key', key)
+    console.log(dict[key].length)
+    for (let j = 0; j < dict[key].length; j++) {
       sum += dict[key][j]
     }
+    console.log('here')
     labels.push(key)
     data.push(sum / dict[key].length)
   }
@@ -34,7 +39,7 @@ export const average = (arr1, arr2) => {
   return [labels, data]
 }
 
-export const sum = (arr1, arr2) => {
+const sum = (arr1, arr2) => {
   let dict = helper(arr1, arr2)
   let labels = []
   let data = []
@@ -43,7 +48,7 @@ export const sum = (arr1, arr2) => {
   for (let i = 0; i < keys.length; i++) {
     let key = keys[i]
     let summ = 0
-    for (let j = 0; i < dict[key].length; j++) {
+    for (let j = 0; j < dict[key].length; j++) {
       summ += dict[key][j]
     }
     labels.push(key)
@@ -55,9 +60,13 @@ export const sum = (arr1, arr2) => {
   return [labels, data]
 }
 
-//FOR TESTING//
-// const arr1 = ['NY', 'NY', 'NY', 'ny', 'CT', 'ct', 'OH']
-// const arr2 = [1, 2, 3, 4, 5, 6, 7]
+let labels = ['NY', 'NY', 'NY', 'CT', 'CT', 'CT', 'OH']
+let data = [1, 2, 3, 4, 5, 6, 7]
+// sum(labels,data)
+average(labels, data)
+sum(labels, data)
 
-// average(arr1, arr2)
-// sum(arr1, arr2)
+module.exports = {
+  average,
+  sum
+}
