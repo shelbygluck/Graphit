@@ -35,7 +35,7 @@ export class BarGraphComponent extends Component {
               labels: this.props.columnData[this.props.columns[1]],
               datasets: [
                 {
-                  label: 'Rainfall',
+                  label: `${this.props.columns[0]}`,
                   backgroundColor: 'rgba(75,192,192,1)',
                   borderColor: 'rgba(0,0,0,1)',
                   borderWidth: 2,

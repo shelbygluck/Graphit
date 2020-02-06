@@ -41,7 +41,7 @@ export class LineChart extends React.Component {
               labels: this.props.columnData[this.props.columns[1]],
               datasets: [
                 {
-                  label: 'Rainfall',
+                  label: `${this.props.columns[0]}`,
                   fill: false,
                   lineTension: 0.5,
                   backgroundColor: 'rgba(75,192,192,1)',
@@ -54,7 +54,7 @@ export class LineChart extends React.Component {
             options={{
               title: {
                 display: true,
-                text: 'Average Rainfall per month',
+                text: `${this.props.columns[0]} by ${this.props.columns[1]}`,
                 fontSize: 20
               },
               legend: {
