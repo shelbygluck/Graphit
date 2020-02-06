@@ -1,6 +1,7 @@
 import axios from 'axios'
 import history from '../history'
 import {combineReducers} from 'redux'
+import {isUnique} from '../helpers.js/isUnique'
 
 /**
  * ACTION TYPES
@@ -62,6 +63,7 @@ export const columnData = userId => async dispatch => {
           dict[key].push(obj[key])
         }
       }
+      console.log('DICT', dict, 'columnNames', columnNames)
     })
 
     dispatch(getColumnData(dict))
