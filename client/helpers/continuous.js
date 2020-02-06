@@ -1,15 +1,16 @@
 // Discrete data is counted, can only take certain fixed values (dice), finite
 // Continuous data is measured, can take any value (weight), infinite
-//this function take
+//this function takes the column NAME and returns true for continuous and false for discrete
 
 const names = require('./extras/examples')
 
 const isContinuous = function(columnName) {
-  names.forEach(name => {
-    if (columnName.includes(name)) {
+  for (let i = 0; i < names.length; i++) {
+    if (columnName.includes(names[i])) {
+      console.log('FOUND IT')
       return true
     }
-  })
+  }
   return false
 }
 
