@@ -13,7 +13,7 @@ const helper = (labels, data) => {
   return dict
 }
 
-const average = (arr1, arr2) => {
+export const average = (arr1, arr2) => {
   let dict = helper(arr1, arr2)
   let labels = []
   let data = []
@@ -34,7 +34,7 @@ const average = (arr1, arr2) => {
   return [labels, data]
 }
 
-const sum = (arr1, arr2) => {
+export const sum = (arr1, arr2) => {
   let dict = helper(arr1, arr2)
   let labels = []
   let data = []
