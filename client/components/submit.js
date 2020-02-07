@@ -12,7 +12,8 @@ class Submit extends React.Component {
     event.preventDefault()
     let formData = new FormData()
     formData.append('file', this.props.uploadedFile)
-    formData.append('userOptions', this.props.userOptions)
+    const {column1, column2} = this.props.userOptions
+    formData.append('selectedColumns', [column1, column2])
 
     try {
       const {data} = await axios({
