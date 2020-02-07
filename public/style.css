@@ -26,6 +26,11 @@ form div {
   display: inline-block;
 }
 
+.header h1,
+h2 {
+  text-align: center;
+}
+
 #input-upload {
   display: none;
 }

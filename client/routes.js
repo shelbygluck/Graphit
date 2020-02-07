@@ -23,13 +23,13 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route path="/main" component={Main} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/main" component={Main} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/pie" component={PieChartComponent} />
+            <Route exact path="/pie" component={PieChartComponent} />
             <Route path="/line" component={LineChart} />
             <Route path="/scatterplots" component={ScatterPlot} />
             <Route path="/bar" component={BarGraphComponent} />
