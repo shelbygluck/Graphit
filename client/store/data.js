@@ -1,8 +1,8 @@
 import axios from 'axios'
 import history from '../history'
 import {combineReducers} from 'redux'
-import {isUnique} from '../helpers.js/isUnique'
-import {average, sum} from '../helpers.js/averageAndSum'
+import {isUnique} from '../helpers/isUnique'
+import {average, sum} from '../helpers/averageAndSum'
 
 /**
  * ACTION TYPES
