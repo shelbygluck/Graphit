@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import data from './data'
 import upload from './upload'
+import graph from './graph'
 
-const reducer = combineReducers({user, data, upload})
+const reducer = combineReducers({user, data, upload, graph})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
