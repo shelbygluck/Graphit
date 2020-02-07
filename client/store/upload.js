@@ -34,8 +34,8 @@ const fileUploadReducer = (state = defaultState, action) => {
       const userOptions = action.userOptions
       return {...state, userOptions}
     case GOT_UPLOADED_FILE:
-      console.log(action.file)
-      return {...state, ...action.file}
+      const file = action.file
+      return {...state, file}
     default:
       return state
   }

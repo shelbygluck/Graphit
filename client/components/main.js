@@ -10,12 +10,14 @@ class Main extends Component {
 
   render() {
     return (
-      <Grid container justify="center" alignItems="center">
-        <Grid>
+      <Grid container direction="column" justify="center" alignItems="center">
+        <Grid item className="header">
           <h1>Your data, we visualize</h1>
           <h2>
             Upload or drop .csv file to get the best visualization of your data
           </h2>
+        </Grid>
+        <Grid item>
           <Upload />
         </Grid>
       </Grid>
