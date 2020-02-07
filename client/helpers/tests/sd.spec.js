@@ -1,6 +1,3 @@
-const chai = require('chai')
-const expect = chai.expect
-
 const {findMean, findSD, isSDLow} = require('../sd')
 
 const data = [1, 4, 6, -100, 9, 2, 0.2]

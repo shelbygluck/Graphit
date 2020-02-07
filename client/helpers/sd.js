@@ -1,3 +1,6 @@
+//standard deviation measures the spread of data
+//final function returns true for low SD and false for high SD
+
 const findMean = function(data) {
   return (
     data.reduce(function(a, b) {
