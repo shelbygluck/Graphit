@@ -1,15 +1,14 @@
 import React from 'react'
-
-import {Navbar, Upload} from './components'
+import {Navbar} from './components'
 import Routes from './routes'
+import {Grid} from '@material-ui/core'
 
 const App = () => {
   return (
-    <div id="everything">
+    <Grid container>
       <Navbar />
       <Routes />
-      <Upload />
-    </div>
+    </Grid>
   )
 }
 

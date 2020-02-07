@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Upload from './upload'
+import {Grid} from '@material-ui/core'
 
 class Main extends Component {
   constructor(props) {
@@ -8,15 +10,15 @@ class Main extends Component {
 
   render() {
     return (
-      <div id="createPageElements">
-        <h1>
-          You add data,<br /> we graph it.
-        </h1>
-        <h2>
-          Or simply upload your data in .cvs format <br />to get the best
-          visualization of your data.
-        </h2>
-      </div>
+      <Grid container justify="center" alignItems="center">
+        <Grid>
+          <h1>Your data, we visualize</h1>
+          <h2>
+            Upload or drop .csv file to get the best visualization of your data
+          </h2>
+          <Upload />
+        </Grid>
+      </Grid>
     )
   }
 }
