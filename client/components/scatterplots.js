@@ -1,40 +1,88 @@
 import React from 'react'
 import {Scatter} from 'react-chartjs-2'
+import {connect} from 'react-redux'
+import {scatterData} from '../store/data'
+import html2canvas from 'html2canvas'
+const pdfConverter = require('jspdf')
 
-export default class Scatterplot extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      labels: 'Scatter Dataset',
-      datasets: [
-        {
-          label: 'Rainfall',
-          data: [{x: -10, y: 0}, {x: 0, y: 10}, {x: 10, y: 5}, {x: -2, y: 4}],
-          backgroundColor: ['red', 'blue', 'green', 'black']
-        }
-      ]
-    }
+export class Scatterplot extends React.Component {
+  componentDidMount() {
+    let userId = this.props.user.id
+    this.props.loadColumnData(userId)
   }
+
+  saveAsPDF() {
+    let input = window.document.getElementsByClassName('divToPDF')[0]
+    html2canvas(input)
+      .then(canvas => {
+        console.log(canvas)
+        const imgData = canvas.toDataURL('image/png')
+        const pdf = new pdfConverter('l', 'pt')
+        pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)
+        pdf.save('test.pdf')
+      })
+      .catch(err => console.log(err.message))
+  }
+
   render() {
     return (
       <div>
-        <Scatter
-          data={{
-            labels: this.state.labels,
-            datasets: this.state.datasets
-          }}
-          options={{
-            scales: {
-              xAxes: [
+        <div className="divToPDF">
+          <Scatter
+            data={{
+              labels: 'Scatter Dataset',
+              datasets: [
                 {
-                  type: 'linear',
-                  position: 'bottom'
+                  label: `${this.props.columns[0]} vs. ${
+                    this.props.columns[1]
+                  }`,
+                  data: this.props.scatterData,
+                  backgroundColor: 'navy'
                 }
               ]
-            }
-          }}
-        />
+            }}
+            options={{
+              scales: {
+                xAxes: [
+                  {
+                    type: 'linear',
+                    position: 'bottom',
+                    scaleLabel: {
+                      display: true,
+                      labelString: this.props.columns[0]
+                    }
+                  }
+                ],
+                yAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      labelString: this.props.columns[1]
+                    }
+                  }
+                ]
+              }
+            }}
+          />
+        </div>
+        <div>
+          <button onClick={() => this.saveAsPDF()}>Save as PDF</button>
+        </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user,
+  scatterData: state.data.scatterData,
+  columns: state.data.columns
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadColumnData: id => dispatch(scatterData(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Scatterplot)
