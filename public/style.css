@@ -1,13 +1,6 @@
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
-  background: rgb(237, 223, 224);
-  background: linear-gradient(
-    90deg,
-    rgba(237, 223, 224, 1) 35%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  color: darkslategray;
 }
 
 a {
@@ -33,9 +26,6 @@ form div {
   display: inline-block;
 }
 
-#createPageElements {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+#input-upload {
+  display: none;
 }

@@ -1,62 +1,105 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {gotColumns} from '../store/data'
+import {gotUserOptions} from '../store/upload'
+import {
+  Grid,
+  Select,
+  MenuItem,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Button
+} from '@material-ui/core'
+import Submit from './submit'
 
 class Columns extends React.Component {
   constructor() {
     super()
     this.state = {
-      numberOfOptions: 2,
-      columns: []
+      column1: '',
+      column2: '',
+      option: ''
     }
   }
 
+  // updates userOptions in redux store whenever user changes any selections
   handleOnSelect = event => {
-    let columns = this.state.columns
-    const idx = Number(event.target.name)
-    columns[idx] = event.target.value
-    this.props.gotColumns(columns)
-    this.setState({columns})
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+    let newUserOption = {[event.target.name]: event.target.value}
+    this.props.setUserOptions({...this.state, ...newUserOption})
   }
 
+  // creates a list of column names for a drop down selection
   createOptions = columns => {
     let options = []
-    for (let i = 0; i < this.state.numberOfOptions; i++) {
-      options[i] = []
-      columns.map((column, idx) => {
-        const key = `${column}-${i}-${idx}`
-        options[i].push(
-          <option key={key} value={column}>
-            {column}
-          </option>
-        )
-      })
-    }
+    columns.map((column, idx) => {
+      options.push(
+        <MenuItem key={idx} value={column}>
+          {column}
+        </MenuItem>
+      )
+    })
     return options
   }
 
+  // creates a list of radio buttons for relationship option
+  createRadioButtons = () => {
+    let radioButtons = []
+    const relationships = ['affects to', 'compares to', 'is broken down by']
+    relationships.forEach((label, idx) => {
+      radioButtons.push(
+        <FormControlLabel
+          key={idx}
+          value={label}
+          control={<Radio color="primary" />}
+          label={label}
+          labelPlacement="end"
+        />
+      )
+    })
+    return radioButtons
+  }
+
   render() {
-    console.log(this.state)
-    const lists = this.createOptions(this.props.columns)
-    if (lists.length < 0)
+    if (this.props.allColumns.length < 0)
       return <div>Could not get column names from the data set.</div>
     return (
-      <div>
-        {lists.map((list, idx) => {
-          const key = `column${idx + 1}`
-          return (
-            <select name={idx} key={key} onChange={this.handleOnSelect}>
-              {list}
-            </select>
-          )
-        })}
-      </div>
+      <Grid container>
+        <Grid item sm={4}>
+          <Select
+            name="column1"
+            value={this.state.column1}
+            onChange={this.handleOnSelect}
+            displayEmpty
+          >
+            {this.createOptions(this.props.allColumns)}
+          </Select>
+        </Grid>
+        <Grid item sm={4}>
+          <RadioGroup name="option" onChange={this.handleOnSelect}>
+            {this.createRadioButtons()}
+          </RadioGroup>
+        </Grid>
+        <Grid item sm={4}>
+          <Select
+            name="column2"
+            value={this.state.column2}
+            onChange={this.handleOnSelect}
+            displayEmpty
+          >
+            {this.createOptions(this.props.allColumns)}
+          </Select>
+        </Grid>
+        <Submit />
+      </Grid>
     )
   }
 }
 
 const mapDispatch = dispatch => ({
-  gotColumns: columns => dispatch(gotColumns(columns))
+  setUserOptions: options => dispatch(gotUserOptions(options))
 })
 
 export default connect(null, mapDispatch)(Columns)
