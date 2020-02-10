@@ -61,3 +61,36 @@ h3 {
 #submit-btn {
   margin: 24px 0;
 }
+
+.carousel {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+.prevButton {
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+}
+.chosenGraph {
+  flex-basis: 80%;
+  padding: 10px;
+}
+.nextButton {
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+}
+.carouselButton {
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 10px 15px;
+  color: white;
+  background-color: grey;
+}
+.carouselButton:disabled {
+  background-color: white;
+  border-color: white;
+}

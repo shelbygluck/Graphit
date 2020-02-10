@@ -5,18 +5,7 @@ import {columnData} from '../store/data'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 
-// let columns = ['STATE', 'AGE']
-// let columnDataa = {
-//   STATE: ['OH', 'IN', 'SC', 'OH', 'AR', 'AZ', 'AK', 'WA', 'UT', 'WA'],
-//   AGE: ['37', '28', '65', '41', '23', '54', '52', '44', '61', '39']
-// }
-
 export class LineChart extends React.Component {
-  componentDidMount() {
-    let userId = this.props.user.id
-    this.props.loadColumnData(userId)
-  }
-
   saveAsPDF() {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
@@ -31,28 +20,31 @@ export class LineChart extends React.Component {
   }
 
   render() {
+    console.log('LINE', this.props)
     return (
       <div>
         <div className="divToPDF">
           <Line
             data={{
-              labels: this.props.columnData[this.props.columns[1]],
+              labels: this.props.graph.data[this.props.graph.columns[1]],
               datasets: [
                 {
-                  label: `${this.props.columns[0]}`,
+                  label: `${this.props.graph.columns[0]}`,
                   fill: false,
                   lineTension: 0.5,
                   backgroundColor: '#478559',
                   borderColor: '#161748',
                   borderWidth: 2,
-                  data: this.props.columnData[this.props.columns[0]]
+                  data: this.props.graph.data[this.props.graph.columns[0]]
                 }
               ]
             }}
             options={{
               title: {
                 display: true,
-                text: `${this.props.columns[0]} by ${this.props.columns[1]}`,
+                text: `${this.props.graph.columns[0]} by ${
+                  this.props.graph.columns[1]
+                }`,
                 fontSize: 20
               },
               legend: {
@@ -71,15 +63,7 @@ export class LineChart extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  columnData: state.data.columnData,
-  columns: state.data.columns
+  graph: state.graph
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadColumnData: id => dispatch(columnData(id))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LineChart)
+export default connect(mapStateToProps, null)(LineChart)

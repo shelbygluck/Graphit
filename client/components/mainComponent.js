@@ -5,51 +5,102 @@ import html2canvas from 'html2canvas'
 import BarGraphComponent from './bar'
 import PieChartComponent from './pie'
 import LineChart from './line'
-import ScatterPlot, {Scatterplot} from './scatterplots'
+import Scatterplot from './scatterplots'
 
-export default class MainComponent extends React.Component {
+class MainComponent extends React.Component {
   constructor() {
     super()
     this.state = {
-      type: ['pie', 'bar'],
-      columnData: {
-        column1: ['1', '2'],
-        column2: ['bla bla', 'bla bla bla']
-      },
       counter: 0
     }
+
+    this.next = this.next.bind(this)
+    this.prev = this.prev.bind(this)
+    this.prevButtonDisabled = this.prevButtonDisabled.bind(this)
+    this.nextButtonDisabled = this.nextButtonDisabled.bind(this)
   }
+
+  next() {
+    let newCounter = this.state.counter + 1
+    this.setState({
+      counter: newCounter
+    })
+    console.log('NEXT', this.state.counter)
+  }
+
+  prev() {
+    let newCounter = this.state.counter - 1
+    this.setState({
+      counter: newCounter
+    })
+    console.log('PREV', this.state.counter)
+  }
+
+  prevButtonDisabled() {
+    if (this.state.counter === 0) {
+      return true
+    }
+    return false
+  }
+
+  nextButtonDisabled() {
+    if (this.state.counter === this.props.graph.type.length - 1) {
+      return true
+    }
+    return false
+  }
+
   render() {
     return (
-      <div>
-        <div>
-          {this.state.type[0] === 'pie' ? (
+      <div className="carousel">
+        <div className="prevButton">
+          <button
+            type="button"
+            className="carouselButton"
+            onClick={this.prev}
+            disabled={this.prevButtonDisabled()}
+          >
+            &#8249;
+          </button>
+        </div>
+
+        <div className="chosenGraph">
+          {this.props.graph.type[this.state.counter] === 'pie' ? (
             <PieChartComponent />
-          ) : this.state.type[0] === 'bar' ? (
+          ) : this.props.graph.type[this.state.counter] === 'bar' ? (
             <BarGraphComponent />
-          ) : this.state.type[0] === 'line' ? (
+          ) : this.props.graph.type[this.state.counter] === 'line' ? (
             <LineChart />
-          ) : this.state.type[0] === 'scatter' ? (
+          ) : this.props.graph.type[this.state.counter] === 'scatter' ? (
             <Scatterplot />
           ) : (
             <div />
           )}
         </div>
-        <br />
-        <div>
-          {this.state.type[1] === 'pie' ? (
-            <PieChartComponent />
-          ) : this.state.type[1] === 'bar' ? (
-            <BarGraphComponent />
-          ) : this.state.type[1] === 'line' ? (
-            <LineChart />
-          ) : this.state.type[1] === 'scatter' ? (
-            <Scatterplot />
-          ) : (
-            <div />
-          )}
+
+        <div className="nextButton">
+          <button
+            className="carouselButton"
+            type="button"
+            onClick={this.next}
+            disabled={this.nextButtonDisabled()}
+          >
+            &#8250;
+          </button>
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  graph: state.graph
+})
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     loadColumnData: id => dispatch(scatterData(id))
+//   }
+// }
+
+export default connect(mapStateToProps, null)(MainComponent)

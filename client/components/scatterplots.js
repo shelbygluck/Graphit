@@ -1,16 +1,11 @@
 import React from 'react'
 import {Scatter} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import {scatterData} from '../store/data'
+// import {scatterData} from '../store/data'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 
 export class Scatterplot extends React.Component {
-  componentDidMount() {
-    let userId = this.props.user.id
-    this.props.loadColumnData(userId)
-  }
-
   saveAsPDF() {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
@@ -25,6 +20,7 @@ export class Scatterplot extends React.Component {
   }
 
   render() {
+    console.log('SCATTERRRR', this.props)
     return (
       <div>
         <div className="divToPDF">
@@ -33,10 +29,11 @@ export class Scatterplot extends React.Component {
               labels: 'Scatter Dataset',
               datasets: [
                 {
-                  label: `${this.props.columns[0]} vs. ${
-                    this.props.columns[1]
+                  label: `${this.props.graph.columns[0]} vs. ${
+                    this.props.graph.columns[1]
                   }`,
-                  data: this.props.scatterData,
+                  // label: 'test',
+                  data: this.props.graph.scatterData,
                   backgroundColor: 'navy'
                 }
               ]
@@ -49,7 +46,7 @@ export class Scatterplot extends React.Component {
                     position: 'bottom',
                     scaleLabel: {
                       display: true,
-                      labelString: this.props.columns[0]
+                      labelString: this.props.graph.columns[0]
                     }
                   }
                 ],
@@ -57,7 +54,7 @@ export class Scatterplot extends React.Component {
                   {
                     scaleLabel: {
                       display: true,
-                      labelString: this.props.columns[1]
+                      labelString: this.props.graph.columns[1]
                     }
                   }
                 ]
@@ -74,15 +71,7 @@ export class Scatterplot extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  scatterData: state.data.scatterData,
-  columns: state.data.columns
+  graph: state.graph
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadColumnData: id => dispatch(scatterData(id))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Scatterplot)
+export default connect(mapStateToProps, null)(Scatterplot)
