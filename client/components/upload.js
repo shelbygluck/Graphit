@@ -63,12 +63,12 @@ class Upload extends React.Component {
   }
 
   displayColumns = () => {
-    if (this.state.columns && this.state.percentage === 100) {
+    if (this.state.columns) {
       return <Columns allColumns={this.state.columns} />
-    } else {
-      return (
-        <LinearProgress variant="determinate" value={this.state.percentage} />
-      )
+      // } else {
+      //   return (
+      //     <LinearProgress variant="determinate" value={this.state.percentage} />
+      //   )
     }
   }
 

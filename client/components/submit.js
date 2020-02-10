@@ -2,30 +2,39 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import axios from 'axios'
+import {decisionTree} from './test'
+import store from '../store'
 
 class Submit extends React.Component {
   constructor() {
     super()
   }
 
+  testDecisionTree = event => {
+    event.preventDefault()
+    console.log('test Decision Tree')
+    decisionTree()
+  }
+
   handleFileSubmit = async event => {
     event.preventDefault()
-    let formData = new FormData()
-    formData.append('file', this.props.uploadedFile)
-    const {column1, column2} = this.props.userOptions
-    formData.append('selectedColumns', [column1, column2])
+    console.log('test Decision Tree')
+    // let formData = new FormData()
+    // formData.append('file', this.props.uploadedFile)
+    // const {column1, column2} = this.props.userOptions
+    // formData.append('selectedColumns', [column1, column2])
 
-    try {
-      const {data} = await axios({
-        method: 'post',
-        url: '/api/charts',
-        data: formData,
-        headers: {'Content-Type': 'multipart/form-data'}
-      })
-      console.log('post api/charts', data)
-    } catch (err) {
-      console.log(err)
-    }
+    // try {
+    //   const {data} = await axios({
+    //     method: 'post',
+    //     url: '/api/charts',
+    //     data: formData,
+    //     headers: {'Content-Type': 'multipart/form-data'}
+    //   })
+    //   console.log('post api/charts', data)
+    // } catch (err) {
+    //   console.log(err)
+    // }
   }
 
   buttonDisabled = () => {
@@ -44,7 +53,7 @@ class Submit extends React.Component {
         variant="contained"
         type="submit"
         disabled={isDisabled}
-        onClick={this.handleFileSubmit}
+        onClick={this.testDecisionTree}
       >
         Graph it!
       </Button>
