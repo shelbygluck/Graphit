@@ -34,3 +34,25 @@ h2 {
 #input-upload {
   display: none;
 }
+
+.carousel {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+.prevButton {
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+}
+.chosenGraph {
+  flex-basis: 80%;
+  padding: 10px;
+}
+.nextButton {
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+}
