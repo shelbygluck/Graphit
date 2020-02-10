@@ -56,6 +56,7 @@ class MainComponent extends React.Component {
         <div className="prevButton">
           <button
             type="button"
+            className="carouselButton"
             onClick={this.prev}
             disabled={this.prevButtonDisabled()}
           >
@@ -79,6 +80,7 @@ class MainComponent extends React.Component {
 
         <div className="nextButton">
           <button
+            className="carouselButton"
             type="button"
             onClick={this.next}
             disabled={this.nextButtonDisabled()}

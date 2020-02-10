@@ -56,3 +56,14 @@ h2 {
   display: flex;
   justify-content: center;
 }
+.carouselButton {
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 10px 15px;
+  color: white;
+  background-color: grey;
+}
+.carouselButton:disabled {
+  background-color: white;
+  border-color: white;
+}
