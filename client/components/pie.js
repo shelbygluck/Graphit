@@ -35,17 +35,23 @@ export class PieChartComponent extends Component {
                 {
                   data: this.props.columnData[this.props.columns[0]],
                   backgroundColor: [
-                    'maroon',
-                    'red',
-                    'orange',
-                    'yellow',
-                    'olive',
-                    'green',
-                    'blue',
-                    'navy',
-                    'purple',
-                    'fuchsia',
-                    'aqua'
+                    '#161748',
+                    '#478559',
+                    '#f95d9b',
+                    '#39a0ca',
+                    '#fea49f',
+                    '#fbaf08',
+                    '#51d0de',
+                    '#bf4aa8',
+                    '#c3d7c47',
+                    '#e05915',
+                    '#5252d4',
+                    '#8bf0ba',
+                    '#0e0fed',
+                    '#94f0f1',
+                    '#f2b1d8',
+                    '#ffdc6a',
+                    '#dcc7aa'
                   ]
                 }
               ]

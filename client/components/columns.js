@@ -47,7 +47,11 @@ class Columns extends React.Component {
   // creates a list of radio buttons for relationship option
   createRadioButtons = () => {
     let radioButtons = []
-    const relationships = ['affects to', 'compares to', 'is broken down by']
+    const relationships = [
+      'is influenced by',
+      'compares to',
+      'is broken down by'
+    ]
     relationships.forEach((label, idx) => {
       radioButtons.push(
         <FormControlLabel
