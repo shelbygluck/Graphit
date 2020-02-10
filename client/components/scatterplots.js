@@ -1,7 +1,7 @@
 import React from 'react'
 import {Scatter} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import {scatterData} from '../store/data'
+// import {scatterData} from '../store/data'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 
@@ -29,10 +29,10 @@ export class Scatterplot extends React.Component {
               labels: 'Scatter Dataset',
               datasets: [
                 {
-                  // label: `${this.props.graph.columns[0]} vs. ${
-                  //   this.props.graph.columns[1]
-                  // }`,
-                  label: 'test',
+                  label: `${this.props.graph.columns[0]} vs. ${
+                    this.props.graph.columns[1]
+                  }`,
+                  // label: 'test',
                   data: this.props.graph.scatterData,
                   backgroundColor: 'navy'
                 }

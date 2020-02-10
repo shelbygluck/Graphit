@@ -5,7 +5,7 @@ import html2canvas from 'html2canvas'
 import BarGraphComponent from './bar'
 import PieChartComponent from './pie'
 import LineChart from './line'
-import ScatterPlot, {Scatterplot} from './scatterplots'
+import Scatterplot from './scatterplots'
 
 class MainComponent extends React.Component {
   render() {
