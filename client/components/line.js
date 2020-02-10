@@ -42,8 +42,8 @@ export class LineChart extends React.Component {
                   label: `${this.props.columns[0]}`,
                   fill: false,
                   lineTension: 0.5,
-                  backgroundColor: 'rgba(75,192,192,1)',
-                  borderColor: 'rgba(0,0,0,1)',
+                  backgroundColor: '#478559',
+                  borderColor: '#161748',
                   borderWidth: 2,
                   data: this.props.columnData[this.props.columns[0]]
                 }

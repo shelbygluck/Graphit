@@ -18,6 +18,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/line">Line Chart</Link>
           <Link to="/scatterplots">Scatter Plot</Link>
           <Link to="/bar">Bar Graph</Link>
+          <Link to="/test">Maincomponent </Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
