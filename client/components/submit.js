@@ -50,6 +50,7 @@ class Submit extends React.Component {
     const isDisabled = this.buttonDisabled()
     return (
       <Button
+        id="submit-btn"
         variant="contained"
         type="submit"
         disabled={isDisabled}

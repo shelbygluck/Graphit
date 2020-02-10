@@ -4,7 +4,7 @@ import Papa from 'papaparse'
 import Columns from './columns'
 import {gotParsedData} from '../store/data'
 import {gotUploadedFile} from '../store/upload'
-import {Button, LinearProgress} from '@material-ui/core'
+import {Button, LinearProgress, Grid} from '@material-ui/core'
 
 class Upload extends React.Component {
   constructor() {
@@ -65,17 +65,24 @@ class Upload extends React.Component {
   displayColumns = () => {
     if (this.state.columns) {
       return <Columns allColumns={this.state.columns} />
-      // } else {
-      //   return (
-      //     <LinearProgress variant="determinate" value={this.state.percentage} />
-      //   )
     }
   }
 
   render() {
     return (
-      <Fragment>
-        <form onSubmit={this.handleFileSubmit}>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        spacing={2}
+      >
+        <Grid item className="header" sm={12}>
+          <div id="main-header">GraphIt</div>
+          <h2>Your data, we visualize</h2>
+          <h3>Upload .csv file to get the best visualization of your data</h3>
+        </Grid>
+        <Grid item sm={12}>
           <input
             type="file"
             name="file"
@@ -84,14 +91,18 @@ class Upload extends React.Component {
             id="input-upload"
           />
           <label htmlFor="input-upload">
-            <Button variant="contained" color="primary" component="span">
+            <Button
+              id="upload-btn"
+              variant="contained"
+              color="primary"
+              component="span"
+            >
               Choose File
             </Button>
           </label>
-          <p> or drag and drop your file </p>
-        </form>
+        </Grid>
         {this.state.uploadedFile && this.displayColumns()}
-      </Fragment>
+      </Grid>
     )
   }
 }
