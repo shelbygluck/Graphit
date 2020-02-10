@@ -1,5 +1,6 @@
 import {gotGraph} from '../store/graph'
 import store from '../store'
+import {isNumerical} from '../helpers/numerical'
 
 const finalDecision = (columnData, scatterData, type, columns) => {
   console.log('I am at final decision func')
@@ -42,10 +43,29 @@ function findScatterData(parsedData, column1name, column2name) {
   return scatter
 }
 
+function chooseGraph(columnData, column1, column2, option) {
+  console.log('OPTION HERE', option)
+  let type = []
+  if (option === 'is broken down by') {
+    type = ['pie', 'bar']
+  } else if (option === 'compares to') {
+    // console.log("COL1", isNumerical(columnData[column1]))
+    // console.log("COL2", isNumerical(columnData[column2]))
+    if (isNumerical(columnData[column1]) && isNumerical(columnData[column2])) {
+      type = ['scatter', 'line']
+    } else {
+      type = ['line', 'bar']
+    }
+  } else if (option === 'is influenced by') {
+    type = ['bar', 'line']
+  }
+  return type
+}
+
 export const decisionTree = (parsedData, column1, column2, option) => {
   const columnData = findColumnData(parsedData, column1, column2)
   let scatterData = findScatterData(parsedData, column1, column2)
-  let type = ['pie', 'bar']
+  let type = chooseGraph(columnData, column1, column2, option)
   let columns = [column1, column2]
 
   finalDecision(columnData, scatterData, type, columns)

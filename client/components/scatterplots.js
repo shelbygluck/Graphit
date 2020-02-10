@@ -29,9 +29,10 @@ export class Scatterplot extends React.Component {
               labels: 'Scatter Dataset',
               datasets: [
                 {
-                  label: `${this.props.graph.columns[0]} vs. ${
-                    this.props.graph.columns[1]
-                  }`,
+                  // label: `${this.props.graph.columns[0]} vs. ${
+                  //   this.props.graph.columns[1]
+                  // }`,
+                  label: 'test',
                   data: this.props.graph.scatterData,
                   backgroundColor: 'navy'
                 }
