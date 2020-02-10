@@ -36,7 +36,6 @@ export const columns = userId => async dispatch => {
   try {
     // let keys = Object.keys(jsondata[0])
     let res = await axios.get(`/api/userData/${userId}`)
-    console.log('singe entry START', res.data, 'single entry nEND')
     let selectedColumns = res.data.selectedColumns
     dispatch(gotColumns(selectedColumns))
   } catch (err) {
