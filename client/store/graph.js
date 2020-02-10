@@ -22,11 +22,9 @@ export const gotGraph = output => ({
 /**
  * REDUCER
  */
-const graphReducer = (state = defaultState, action) => {
+export const graphReducer = (state = defaultState, action) => {
   switch (action.type) {
     case GOT_GRAPH:
-      // const graph = action.output
-      console.log('graph reducer', action.output)
       return {...state, ...action.output}
     default:
       return state
