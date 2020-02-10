@@ -89,8 +89,8 @@ export const scatterData = userId => async dispatch => {
 
     jsondata.forEach(obj => {
       scatter.push({
-        x: parseInt(obj[columnNames[0]]),
-        y: parseInt(obj[columnNames[1]])
+        x: parseInt(obj[columnNames[0]], 10),
+        y: parseInt(obj[columnNames[1]], 10)
       })
     })
 

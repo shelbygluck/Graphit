@@ -6,10 +6,6 @@ import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 
 export class PieChartComponent extends Component {
-  componentDidMount() {
-    this.props.loadColumnData(this.props.user.id)
-  }
-
   saveAsPDF() {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
@@ -27,13 +23,12 @@ export class PieChartComponent extends Component {
     return (
       <div>
         <div className="divToPDF">
-          <h1>Pie Chart</h1>
           <Pie
             data={{
-              labels: this.props.columnData[this.props.columns[1]],
+              labels: this.props.graph.data[this.props.graph.columns[1]],
               datasets: [
                 {
-                  data: this.props.columnData[this.props.columns[0]],
+                  data: this.props.graph.data[this.props.graph.columns[0]],
                   backgroundColor: [
                     '#161748',
                     '#478559',
@@ -69,15 +64,7 @@ export class PieChartComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  columnData: state.data.columnData,
-  columns: state.data.columns
+  graph: state.graph
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadColumnData: id => dispatch(columnData(id))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PieChartComponent)
+export default connect(mapStateToProps, null)(PieChartComponent)

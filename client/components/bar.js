@@ -6,10 +6,6 @@ import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 
 export class BarGraphComponent extends Component {
-  componentDidMount() {
-    this.props.loadColumnData(this.props.user.id)
-  }
-
   saveAsPDF() {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
@@ -29,14 +25,14 @@ export class BarGraphComponent extends Component {
         <div className="divToPDF">
           <Bar
             data={{
-              labels: this.props.columnData[this.props.columns[1]],
+              labels: this.props.graph.data[this.props.graph.columns[1]],
               datasets: [
                 {
-                  label: `${this.props.columns[0]}`,
+                  label: `${this.props.graph.columns[0]}`,
                   backgroundColor: '#fea49f',
                   borderColor: 'rgba(0,0,0,1)',
                   borderWidth: 2,
-                  data: this.props.columnData[this.props.columns[0]]
+                  data: this.props.graph.data[this.props.graph.columns[0]]
                 }
               ]
             }}
@@ -64,15 +60,7 @@ export class BarGraphComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  columnData: state.data.columnData,
-  columns: state.data.columns
+  graph: state.graph
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadColumnData: id => dispatch(columnData(id))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BarGraphComponent)
+export default connect(mapStateToProps, null)(BarGraphComponent)
