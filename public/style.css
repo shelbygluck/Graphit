@@ -16,23 +16,50 @@ nav a {
   margin: 1em;
 }
 
-nav a:first-child {
-  font-size: 30px;
-  font-weight: bold;
-}
-
 form div {
   margin: 1em;
   display: inline-block;
 }
 
-.header h1,
-h2 {
+#navbar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#navbar a {
+  margin: 10px;
+}
+
+#main-header {
+  font-size: 48px;
   text-align: center;
 }
 
+.header h2,
+h3 {
+  text-align: center;
+}
+
+/* upload */
+
 #input-upload {
   display: none;
+}
+
+#upload-btn {
+  margin: 24px 0;
+}
+
+#columns {
+  min-width: 600px;
+}
+
+.select {
+  width: 200px;
+}
+
+#submit-btn {
+  margin: 24px 0;
 }
 
 .carousel {

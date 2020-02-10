@@ -3,39 +3,34 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {Grid} from '@material-ui/core'
 
-export const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <nav>
+const Navbar = ({handleClick, isLoggedIn}) => (
+  <Grid
+    id="navbar"
+    container
+    justify="space-between"
+    alignItems="center"
+    spacing={2}
+  >
+    <Grid item>
+      <Link to="/">Graphit</Link>
+    </Grid>
+    <Grid item>
       {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link id="logo" to="/main">
-            GraphIt
-          </Link>
-          <Link to="/home">Home</Link>
-          <Link to="/pie">Pie Chart</Link>
-          <Link to="/line">Line Chart</Link>
-          <Link to="/scatterplots">Scatter Plot</Link>
-          <Link to="/bar">Bar Graph</Link>
-          <Link to="/test">Maincomponent </Link>
+        <Grid item>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-        </div>
+        </Grid>
       ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link id="logo" to="/main">
-            GraphIt
-          </Link>
+        <Grid item>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-        </div>
+        </Grid>
       )}
-    </nav>
-    <hr />
-  </div>
+    </Grid>
+  </Grid>
 )
 
 /**
