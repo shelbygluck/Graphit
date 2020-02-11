@@ -10,7 +10,7 @@ a {
 label {
   display: block;
 }
-
+/*
 nav a {
   display: inline-block;
   margin: 1em;
@@ -19,7 +19,7 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 /* navbar */
 
@@ -107,4 +107,15 @@ h3 {
 .carouselButton:disabled {
   background-color: white;
   border-color: white;
+}
+
+/* form */
+
+.form {
+  max-width: 600px;
+  padding: 24px;
+}
+
+.form label {
+  margin-bottom: 12px;
 }
