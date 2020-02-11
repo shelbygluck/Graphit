@@ -8,7 +8,7 @@ const GOT_UPLOADED_FILE = 'GOT_UPLOADED_FILE'
  * INITIAL STATE
  */
 const defaultState = {
-  file: '',
+  file: null,
   userOptions: ''
 }
 
