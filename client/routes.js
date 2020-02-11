@@ -12,6 +12,7 @@ import Main from './components/main'
 import MainComponent from './components/mainComponent'
 import Profile from './components/Profile'
 import SingleChart from './components/single-chart'
+import Loading from '../client/components/loading'
 /**
  * COMPONENT
  */
@@ -38,6 +39,7 @@ class Routes extends Component {
             <Route path="/bar" component={BarGraphComponent} />
             <Route path="/test" component={MainComponent} />
             <Route path="/profile" component={Profile} />
+            <Route path="/graph" component={Loading} />
             <Route path="/single/:id" component={SingleChart} />
           </Switch>
         )}
