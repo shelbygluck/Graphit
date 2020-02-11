@@ -4,6 +4,7 @@ import {Button} from '@material-ui/core'
 import axios from 'axios'
 import {decisionTree} from './test'
 import store from '../store'
+import {Link} from 'react-router-dom'
 
 class Submit extends React.Component {
   constructor() {

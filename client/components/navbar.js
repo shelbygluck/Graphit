@@ -17,6 +17,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       <Link to="/">Graphit</Link>
     </Grid>
     <Grid item>
+      <Link to="/profile">Profile</Link>
+    </Grid>
+    <Grid item>
       {isLoggedIn ? (
         <Grid item>
           <a href="#" onClick={handleClick}>
