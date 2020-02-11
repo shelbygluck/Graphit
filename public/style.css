@@ -34,9 +34,16 @@ form div {
 
 /* general */
 
-#main-header {
+.logo {
+  font-family: 'Carter One', 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #0a044a;
   font-size: 48px;
   text-align: center;
+}
+
+.it {
+  color: #0f3390;
 }
 
 .paper-container {
