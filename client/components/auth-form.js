@@ -1,8 +1,10 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {createUser} from '../store/user'
+import {Paper, Grid, Button, TextField} from '@material-ui/core'
 
 /**
  * COMPONENT
@@ -11,27 +13,59 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+    <Grid container direction="column" justify="center" alignItems="center">
+      <Paper className="form">
+        <div className="logo">
+          Graph<span className="it">it</span>
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      {/* <a href="/auth/google">{displayName} with Google</a> */}
-    </div>
+        <form onSubmit={handleSubmit} name={name}>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            spacing={2}
+          >
+            <Grid item sm={12}>
+              <label htmlFor="email">Email</label>
+              <TextField
+                name="email"
+                type="text"
+                variant="outlined"
+                size="small"
+              />
+            </Grid>
+            <Grid item sm={12}>
+              <label htmlFor="password">Password</label>
+              <TextField
+                name="password"
+                type="password"
+                variant="outlined"
+                size="small"
+              />
+            </Grid>
+            <Grid item sm={12}>
+              <Button variant="contained" type="submit" color="primary">
+                {displayName}
+              </Button>
+            </Grid>
+            {error &&
+              error.response && (
+                <Grid item sm={12}>
+                  {' '}
+                  {error.response.data}{' '}
+                </Grid>
+              )}
+
+            <Grid item sm={12}>
+              <small>
+                Don't have an account? <Link to="/signup">Sign up here!</Link>
+              </small>
+            </Grid>
+          </Grid>
+        </form>
+      </Paper>
+    </Grid>
   )
 }
 const SignupForm = props => {

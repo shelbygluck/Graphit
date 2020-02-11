@@ -23,6 +23,7 @@ class Profile extends Component {
             )
           })}
         </ul>
+        <FeatGraph />
       </div>
     )
   }
