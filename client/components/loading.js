@@ -1,5 +1,5 @@
 import React from 'react'
-import {EatLoading} from 'react-loadingg'
+import {WindMillLoading} from 'react-loadingg'
 import MainComponent from '../components/mainComponent'
 
 export default class Loading extends React.Component {
@@ -17,7 +17,11 @@ export default class Loading extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.done ? <EatLoading size="large" /> : <MainComponent />}
+        {!this.state.done ? (
+          <WindMillLoading size="large" />
+        ) : (
+          <MainComponent />
+        )}
       </div>
     )
   }
