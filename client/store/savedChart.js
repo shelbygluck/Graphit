@@ -77,7 +77,8 @@ export const getSingleChart = chartId => async dispatch => {
       type: [res.data.type],
       data: columnData,
       columns: res.data.selectedColumns,
-      scatterData: scatter
+      scatterData: scatter,
+      imageURL: res.data.imageURL
     }
 
     dispatch(saved(data))
