@@ -10,6 +10,8 @@ import BarGraphComponent from './components/bar'
 import {me} from './store'
 import Main from './components/main'
 import MainComponent from './components/mainComponent'
+import Profile from './components/Profile'
+import SingleChart from './components/single-chart'
 /**
  * COMPONENT
  */
@@ -35,6 +37,8 @@ class Routes extends Component {
             <Route path="/scatterplots" component={ScatterPlot} />
             <Route path="/bar" component={BarGraphComponent} />
             <Route path="/test" component={MainComponent} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/single/:id" component={SingleChart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

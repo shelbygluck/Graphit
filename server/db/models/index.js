@@ -1,7 +1,9 @@
 const User = require('./user')
 const UserData = require('./userData')
+const SavedChart = require('./savedChart')
 
 UserData.belongsTo(User)
+SavedChart.belongsTo(User)
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -18,5 +20,6 @@ UserData.belongsTo(User)
  */
 module.exports = {
   User,
-  UserData
+  UserData,
+  SavedChart
 }

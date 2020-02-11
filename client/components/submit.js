@@ -4,6 +4,7 @@ import {Button} from '@material-ui/core'
 import axios from 'axios'
 import {decisionTree} from './test'
 import store from '../store'
+import {Link} from 'react-router-dom'
 
 class Submit extends React.Component {
   constructor() {
@@ -55,15 +56,18 @@ class Submit extends React.Component {
   render() {
     const isDisabled = this.buttonDisabled()
     return (
-      <Button
-        id="submit-btn"
-        variant="contained"
-        type="submit"
-        disabled={isDisabled}
-        onClick={this.testDecisionTree}
-      >
-        Graph it!
-      </Button>
+      <div>
+        <Button
+          id="submit-btn"
+          variant="contained"
+          type="submit"
+          disabled={isDisabled}
+          onClick={this.testDecisionTree}
+        >
+          Graph it!
+        </Button>
+        <Link to="/test">LIKE HERE</Link>
+      </div>
     )
   }
 }
