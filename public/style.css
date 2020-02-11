@@ -21,6 +21,8 @@ form div {
   display: inline-block;
 }
 
+/* navbar */
+
 #navbar {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -30,37 +32,49 @@ form div {
   margin: 10px;
 }
 
+/* general */
+
 #main-header {
   font-size: 48px;
   text-align: center;
 }
+
+.paper-container {
+  min-width: 600px;
+  margin: 12px 10%;
+  padding: 24px;
+}
+
+.fa-btn svg {
+  padding-right: 12px;
+}
+
+/* upload */
 
 .header h2,
 h3 {
   text-align: center;
 }
 
-/* upload */
-
 #input-upload {
   display: none;
 }
 
 #upload-btn {
-  margin: 24px 0;
+  margin: 12px 0;
 }
 
-#columns {
-  min-width: 600px;
-}
+/* columns */
 
 .select {
   width: 200px;
 }
 
 #submit-btn {
-  margin: 24px 0;
+  margin: 12px 0;
 }
+
+/* graph output */
 
 .carousel {
   display: flex;

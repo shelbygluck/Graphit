@@ -59,6 +59,7 @@ class Submit extends React.Component {
         id="submit-btn"
         variant="contained"
         type="submit"
+        color="primary"
         disabled={isDisabled}
         onClick={this.testDecisionTree}
       >
