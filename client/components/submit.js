@@ -55,6 +55,7 @@ class Submit extends React.Component {
 
   render() {
     const isDisabled = this.buttonDisabled()
+
     return (
       <Link to="/graph">
         <Button
