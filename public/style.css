@@ -121,6 +121,14 @@ h3 {
   border-color: white;
 }
 
+.saveButtons {
+  display: flex;
+  justify-content: center;
+}
+.saveBtn {
+  padding: 10px;
+  margin: 10px;
+
 /* form */
 
 .form {
