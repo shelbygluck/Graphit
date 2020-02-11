@@ -108,3 +108,25 @@ h3 {
   background-color: white;
   border-color: white;
 }
+
+.all-graphs {
+  margin-top: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.all-graphs-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  padding: 10px;
+  margin: 5px;
+}
+.chart-img {
+  width: 150px;
+}
+.graph-name {
+  align-self: center;
+}
