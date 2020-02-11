@@ -33,7 +33,7 @@ describe('upload thunk creators', () => {
 
   describe('columns', () => {
     it('eventually dispatches the GOT COLUMNS action', async () => {
-      await store.dispatch(gotGraph('dummy graph'))
+      await store.dispatch('dummy graph')
       const actions = store.getActions()
       expect(actions[0].type).to.be.equal('GOT_GRAPH')
     })

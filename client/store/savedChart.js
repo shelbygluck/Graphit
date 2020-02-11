@@ -2,6 +2,7 @@ import axios from 'axios'
 import {combineReducers} from 'redux'
 import store from '../store'
 import {gotGraph} from '../store/graph'
+import {push} from 'react-router-redux'
 
 /**
  * ACTION TYPES
@@ -39,6 +40,8 @@ export const saveChart = chart => async dispatch => {
   try {
     let res = await axios.post(`/api/saved`, chart)
     dispatch(saved(res.data))
+    // console.log("TRYING TO REDIRECT")
+    // dispatch(push('/profile'))
   } catch (err) {
     console.error(err)
   }

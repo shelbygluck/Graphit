@@ -57,16 +57,18 @@ class Submit extends React.Component {
     const isDisabled = this.buttonDisabled()
 
     return (
-      <Button
-        id="submit-btn"
-        variant="contained"
-        type="submit"
-        color="primary"
-        disabled={isDisabled}
-        onClick={this.testDecisionTree}
-      >
-        <Link to="/graph">Graph it!</Link>
-      </Button>
+      <Link to="/graph">
+        <Button
+          id="submit-btn"
+          variant="contained"
+          type="submit"
+          color="primary"
+          disabled={isDisabled}
+          onClick={this.testDecisionTree}
+        >
+          Graph it!
+        </Button>
+      </Link>
     )
   }
 }
