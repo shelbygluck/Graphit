@@ -141,6 +141,7 @@ h3 {
 }
 .graph-name {
   align-self: center;
+}
 
 .saveButtons {
   display: flex;
@@ -149,7 +150,7 @@ h3 {
 .saveBtn {
   padding: 10px;
   margin: 10px;
-
+}
 /* form */
 
 .form {
