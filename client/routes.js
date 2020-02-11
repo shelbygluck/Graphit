@@ -10,6 +10,7 @@ import BarGraphComponent from './components/bar'
 import {me} from './store'
 import Main from './components/main'
 import MainComponent from './components/mainComponent'
+import Loading from './components/loading'
 /**
  * COMPONENT
  */
@@ -37,6 +38,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route path="/main" component={Main} />
             <Route path="/test" component={MainComponent} />
+            <Route path="/graph" component={Loading} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

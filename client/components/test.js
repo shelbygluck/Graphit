@@ -64,6 +64,7 @@ function chooseGraph(columnData, column1, column2, option) {
 
 export const decisionTree = (parsedData, column1, column2, option) => {
   const columnData = findColumnData(parsedData, column1, column2)
+
   let scatterData = findScatterData(parsedData, column1, column2)
   let type = chooseGraph(columnData, column1, column2, option)
   let columns = [column1, column2]
