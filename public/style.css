@@ -10,7 +10,7 @@ a {
 label {
   display: block;
 }
-
+/*
 nav a {
   display: inline-block;
   margin: 1em;
@@ -19,7 +19,7 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 /* navbar */
 
@@ -33,6 +33,18 @@ form div {
 }
 
 /* general */
+
+.logo {
+  font-family: 'Carter One', 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #0a044a;
+  font-size: 48px;
+  text-align: center;
+  margin: 12px 0 24px 0;
+}
+.it {
+  color: #0f3390;
+}
 
 #main-header {
   font-size: 48px;
@@ -107,4 +119,19 @@ h3 {
 .carouselButton:disabled {
   background-color: white;
   border-color: white;
+}
+
+/* form */
+
+.form {
+  max-width: 600px;
+  padding: 12px 24px;
+}
+
+.form label {
+  margin-bottom: 7px;
+}
+
+.form button {
+  margin: 12px 0 12px 0;
 }
