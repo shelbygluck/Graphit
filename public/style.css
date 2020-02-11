@@ -1,13 +1,6 @@
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
-  background: rgb(237, 223, 224);
-  background: linear-gradient(
-    90deg,
-    rgba(237, 223, 224, 1) 35%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  color: darkslategray;
 }
 
 a {
@@ -23,19 +16,95 @@ nav a {
   margin: 1em;
 }
 
-nav a:first-child {
-  font-size: 30px;
-  font-weight: bold;
-}
-
 form div {
   margin: 1em;
   display: inline-block;
 }
 
-#createPageElements {
+/* navbar */
+
+#navbar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#navbar a {
+  margin: 10px;
+}
+
+/* general */
+
+#main-header {
+  font-size: 48px;
+  text-align: center;
+}
+
+.paper-container {
+  min-width: 600px;
+  margin: 12px 10%;
+  padding: 24px;
+}
+
+.fa-btn svg {
+  padding-right: 12px;
+}
+
+/* upload */
+
+.header h2,
+h3 {
+  text-align: center;
+}
+
+#input-upload {
+  display: none;
+}
+
+#upload-btn {
+  margin: 12px 0;
+}
+
+/* columns */
+
+.select {
+  width: 200px;
+}
+
+#submit-btn {
+  margin: 12px 0;
+}
+
+/* graph output */
+
+.carousel {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  width: 100%;
+  flex-direction: row;
   align-items: center;
+  /* justify-content: space-evenly; */
+}
+.prevButton {
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+}
+.chosenGraph {
+  flex-basis: 80%;
+  padding: 10px;
+}
+.nextButton {
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+}
+.carouselButton {
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 10px 15px;
+  color: white;
+  background-color: grey;
+}
+.carouselButton:disabled {
+  background-color: white;
+  border-color: white;
 }

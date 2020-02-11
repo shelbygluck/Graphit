@@ -1,15 +1,18 @@
 import React, {Fragment} from 'react'
+import {connect} from 'react-redux'
 import Papa from 'papaparse'
-import axios from 'axios'
 import Columns from './columns'
+import {gotParsedData, gotColumns} from '../store/data'
+import {gotUploadedFile} from '../store/upload'
+import {Button, Grid, Paper} from '@material-ui/core'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUpload} from '@fortawesome/free-solid-svg-icons'
 
-export default class Upload extends React.Component {
+class Upload extends React.Component {
   constructor() {
     super()
     this.state = {
-      columns: null,
-      selectedFile: null,
-      parsedData: null
+      uploadedFile: null
     }
   }
 
@@ -17,59 +20,89 @@ export default class Upload extends React.Component {
     const file = event.target.files[0]
     console.log('event.target.files', file)
     this.setState({
-      selectedFile: file
+      uploadedFile: file
     })
+    // upload file to redux store
+    this.props.uploadFile(file)
+
+    // parse the uploaded file
+    this.parseUploadedFile(file)
+  }
+
+  parseUploadedFile = file => {
+    let size = file.size
+    let percent = 0
+    let data = []
     Papa.parse(file, {
       header: true,
-      complete: results => {
-        this.getParsedData(results.data)
-        console.log('papa parsed data', results.data)
+      step: row => {
+        data.push(row.data)
+        // let progress = row.meta.cursor
+        // let newPercent = Math.round(progress / size * 100)
+        // if (percent === newPercent) return
+        // percent = newPercent
+        // this.updateProgressBar(newPercent)
+      },
+      complete: () => {
+        this.gotParsedData(data)
       }
     })
   }
 
-  getParsedData = parsedData => {
-    this.setState({
-      columns: Object.keys(parsedData[0]),
-      parsedData: parsedData
-    })
-  }
-
-  handleFileSubmit = async event => {
-    event.preventDefault()
-    let formData = new FormData()
-    formData.append('file', this.state.selectedFile)
-
-    try {
-      const {data} = await axios({
-        method: 'post',
-        url: '/api/charts',
-        data: formData,
-        headers: {'Content-Type': 'multipart/form-data'}
-      })
-      //const {data} = await axios.post('/api/charts', this.state.selectedFile)
-      console.log(data)
-    } catch (err) {
-      console.log(err)
-    }
+  gotParsedData = parsedData => {
+    // set list of columns to redux store
+    this.props.gotColumns(Object.keys(parsedData[0]))
+    // set parsed data state to redux store
+    this.props.gotParsedData(parsedData)
   }
 
   render() {
-    const columns = this.state.columns
     return (
-      <Fragment>
-        <form onSubmit={this.handleFileSubmit}>
-          <p>Choose the file to upload</p>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        spacing={2}
+      >
+        <Grid item className="header" sm={12}>
+          <div id="main-header">GraphIt</div>
+          <h2>Your data, we visualize</h2>
+          <h3>Upload .csv file to get the best visualization of your data</h3>
+        </Grid>
+        <Grid item sm={12} className="fa-btn">
           <input
             type="file"
             name="file"
             accept=".csv"
             onChange={this.handleFileUpload}
+            id="input-upload"
           />
-          <input type="submit" value="Upload File" />
-        </form>
-        {columns && <Columns columns={this.state.columns} />}
-      </Fragment>
+          <label htmlFor="input-upload">
+            <Button
+              id="upload-btn"
+              variant="contained"
+              color="primary"
+              component="span"
+            >
+              <FontAwesomeIcon icon={faUpload} />
+              Choose File
+            </Button>
+          </label>
+        </Grid>
+      </Grid>
     )
   }
 }
+
+const mapState = state => ({
+  parsedData: state.data.parsedData
+})
+
+const mapDispatch = dispatch => ({
+  uploadFile: file => dispatch(gotUploadedFile(file)),
+  gotParsedData: data => dispatch(gotParsedData(data)),
+  gotColumns: columns => dispatch(gotColumns(columns))
+})
+
+export default connect(mapState, mapDispatch)(Upload)
