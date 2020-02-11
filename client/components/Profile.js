@@ -12,23 +12,18 @@ class Profile extends Component {
     console.log('USER PROPS', this.props)
     return (
       <div>
-        <h4>{this.props.user.firstName}, here are all of your saved charts</h4>
-        {/* <p>My Saved Charts:</p> */}
-
-        <div className="all-graphs">
+        <h1>Welcome, {this.props.user.email}</h1>
+        <p>My Saved Charts:</p>
+        <ul>
           {this.props.savedChart.myCharts.map(chart => {
             return (
-              <div className="all-graphs-single" key={chart.id}>
-                <Link to={'/single/' + chart.id}>
-                  <img className="chart-img" src={chart.imageURL} />
-                </Link>
-                <Link to={'/single/' + chart.id}>
-                  <p className="graph-name">{chart.name}</p>
-                </Link>
-              </div>
+              <li key={chart.id}>
+                <Link to={'/single/' + chart.id}>{chart.name}</Link>
+              </li>
             )
           })}
-        </div>
+        </ul>
+        <FeatGraph />
       </div>
     )
   }
