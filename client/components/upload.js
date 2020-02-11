@@ -66,7 +66,9 @@ class Upload extends React.Component {
         spacing={2}
       >
         <Grid item className="header" sm={12}>
-          <div id="main-header">GraphIt</div>
+          <div className="logo">
+            Graph<span className="it">it</span>
+          </div>
           <h2>Your data, we visualize</h2>
           <h3>Upload .csv file to get the best visualization of your data</h3>
         </Grid>

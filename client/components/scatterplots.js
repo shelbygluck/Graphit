@@ -76,9 +76,21 @@ export class Scatterplot extends React.Component {
             }}
           />
         </div>
-        <div>
-          <button onClick={() => this.saveAsPDF()}>Save as PDF</button>
-          <button onClick={() => this.saveGraph()}>Save This Graph</button>
+        <div className="saveButtons">
+          <button
+            className="saveBtn"
+            type="button"
+            onClick={() => this.saveAsPDF()}
+          >
+            Save as PDF
+          </button>
+          <button
+            className="saveBtn"
+            type="button"
+            onClick={() => this.saveGraph()}
+          >
+            Save This Graph
+          </button>
           {this.state.savedGraph === true ? (
             <SaveGraph
               type="scatter"
