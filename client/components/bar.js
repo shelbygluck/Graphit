@@ -1,11 +1,19 @@
 import React, {Component} from 'react'
 import {Bar} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import {columnData} from '../store/data'
+// import {columnData} from '../store/data'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
+import SaveGraph from './save-graph'
 
 export class BarGraphComponent extends Component {
+  constructor() {
+    super()
+    this.state = {
+      savedGraph: false
+    }
+  }
+
   saveAsPDF() {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
@@ -17,6 +25,12 @@ export class BarGraphComponent extends Component {
         pdf.save('test.pdf')
       })
       .catch(err => console.log(err.message))
+  }
+
+  saveGraph() {
+    this.setState({
+      savedGraph: true
+    })
   }
 
   render() {
@@ -53,6 +67,16 @@ export class BarGraphComponent extends Component {
         </div>
         <div>
           <button onClick={() => this.saveAsPDF()}>Save as PDF</button>
+          <button onClick={() => this.saveGraph()}>Save This Graph</button>
+          {this.state.savedGraph === true ? (
+            <SaveGraph
+              type="bar"
+              columnData={this.props.graph.data}
+              columns={this.props.graph.columns}
+            />
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     )

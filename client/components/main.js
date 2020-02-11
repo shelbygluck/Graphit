@@ -1,6 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Upload from './upload'
+import Columns from './columns'
 import {Grid} from '@material-ui/core'
+import {columns} from '../store/data'
 
 class Main extends Component {
   constructor(props) {
@@ -10,19 +14,19 @@ class Main extends Component {
 
   render() {
     return (
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item className="header">
-          <h1>Your data, we visualize</h1>
-          <h2>
-            Upload or drop .csv file to get the best visualization of your data
-          </h2>
-        </Grid>
-        <Grid item>
-          <Upload />
-        </Grid>
-      </Grid>
+      <Fragment>
+        {this.props.uploadedFile === null ? <Upload /> : <Columns />}
+      </Fragment>
     )
   }
 }
 
-export default Main
+const mapState = state => ({
+  uploadedFile: state.upload.file
+})
+
+// const mapDispatch = dispatch => ({
+//   handleSubmit: file => dispatch(gotUploadFile(file))
+// })
+
+export default connect(mapState)(Main)

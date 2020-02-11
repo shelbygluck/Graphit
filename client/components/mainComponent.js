@@ -8,43 +8,86 @@ import LineChart from './line'
 import Scatterplot from './scatterplots'
 
 class MainComponent extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      counter: 0
+    }
+
+    this.next = this.next.bind(this)
+    this.prev = this.prev.bind(this)
+    this.prevButtonDisabled = this.prevButtonDisabled.bind(this)
+    this.nextButtonDisabled = this.nextButtonDisabled.bind(this)
+  }
+
+  next() {
+    let newCounter = this.state.counter + 1
+    this.setState({
+      counter: newCounter
+    })
+    console.log('NEXT', this.state.counter)
+  }
+
+  prev() {
+    let newCounter = this.state.counter - 1
+    this.setState({
+      counter: newCounter
+    })
+    console.log('PREV', this.state.counter)
+  }
+
+  prevButtonDisabled() {
+    if (this.state.counter === 0) {
+      return true
+    }
+    return false
+  }
+
+  nextButtonDisabled() {
+    if (this.state.counter === this.props.graph.type.length - 1) {
+      return true
+    }
+    return false
+  }
+
   render() {
-    console.log('PROPPIEZ', this.props)
     return (
-      <div>
-        {this.props.graph.type[0] ? (
-          <div>
-            <div>
-              {this.props.graph.type[0] === 'pie' ? (
-                <PieChartComponent />
-              ) : this.props.graph.type[0] === 'bar' ? (
-                <BarGraphComponent />
-              ) : this.props.graph.type[0] === 'line' ? (
-                <LineChart />
-              ) : this.props.graph.type[0] === 'scatter' ? (
-                <Scatterplot />
-              ) : (
-                <div />
-              )}
-            </div>
-            <br />
-            <div>
-              {this.props.graph.type[1] === 'pie' ? (
-                <PieChartComponent />
-              ) : this.props.graph.type[1] === 'bar' ? (
-                <BarGraphComponent />
-              ) : this.props.graph.type[1] === 'line' ? (
-                <LineChart />
-              ) : this.props.graphtype[1] === 'scatter' ? (
-                <Scatterplot />
-              ) : (
-                <div />
-              )}
-            </div>
-          </div>
-        ) : (
-          <div>LOADING</div>
-        )}
+      <div className="carousel">
+        <div className="prevButton">
+          <button
+            type="button"
+            className="carouselButton"
+            onClick={this.prev}
+            disabled={this.prevButtonDisabled()}
+          >
+            &#8249;
+          </button>
+        </div>
+
+        <div className="chosenGraph">
+          {this.props.graph.type[this.state.counter] === 'pie' ? (
+            <PieChartComponent />
+          ) : this.props.graph.type[this.state.counter] === 'bar' ? (
+            <BarGraphComponent />
+          ) : this.props.graph.type[this.state.counter] === 'line' ? (
+            <LineChart />
+          ) : this.props.graph.type[this.state.counter] === 'scatter' ? (
+            <Scatterplot />
+          ) : (
+            <div />
+          )}
+        </div>
+
+        <div className="nextButton">
+          <button
+            className="carouselButton"
+            type="button"
+            onClick={this.next}
+            disabled={this.nextButtonDisabled()}
+          >
+            &#8250;
+          </button>
+        </div>
       </div>
     )
   }
