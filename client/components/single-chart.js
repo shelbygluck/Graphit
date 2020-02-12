@@ -22,13 +22,31 @@ class SingleChart extends React.Component {
         {/* <div className="chosenGraph"> */}
         <div>
           {this.props.graph.type[0] === 'pie' ? (
-            <PieChartComponent />
+            <PieChartComponent
+              avg={false}
+              graphtype={this.props.graph.type[0]}
+            />
+          ) : this.props.graph.type[0] === 'avg-pie' ? (
+            <PieChartComponent
+              avg={true}
+              graphtype={this.props.graph.type[0]}
+            />
           ) : this.props.graph.type[0] === 'bar' ? (
-            <BarGraphComponent />
+            <BarGraphComponent
+              avg={false}
+              graphtype={this.props.graph.type[0]}
+            />
+          ) : this.props.graph.type[0] === 'avg-bar' ? (
+            <BarGraphComponent
+              avg={true}
+              graphtype={this.props.graph.type[0]}
+            />
           ) : this.props.graph.type[0] === 'line' ? (
-            <LineChart />
+            <LineChart avg={false} graphtype={this.props.graph.type[0]} />
+          ) : this.props.graph.type[0] === 'avg-line' ? (
+            <LineChart avg={true} graphtype={this.props.graph.type[0]} />
           ) : this.props.graph.type[0] === 'scatter' ? (
-            <Scatterplot />
+            <Scatterplot graphtype={this.props.graph.type[0]} />
           ) : (
             <div />
           )}

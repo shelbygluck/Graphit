@@ -43,7 +43,7 @@ export class LineChart extends React.Component {
     if (this.props.avg === true) {
       labels = this.props.graph.averageCD[this.props.graph.columns[1]]
       data = this.props.graph.averageCD[this.props.graph.columns[0]]
-      title = 'average ' + title
+      title = 'Average ' + title
     }
     return (
       <div>

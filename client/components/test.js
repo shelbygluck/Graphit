@@ -56,6 +56,7 @@ function chooseGraph(columnData, column1, column2, option) {
       return ['pie', 'bar']
     }
     return ['bar', 'pie']
+    // return ['avg-bar', 'avg-pie']
   } else if (option === 'compares to') {
     if (isNumerical(columnData[column1]) && isNumerical(columnData[column2])) {
       return ['scatter', 'line']

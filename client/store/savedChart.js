@@ -3,6 +3,7 @@ import {combineReducers} from 'redux'
 import store from '../store'
 import {gotGraph} from '../store/graph'
 import {push} from 'react-router-redux'
+import {averageColumnData} from '../helpers/averageColumnData'
 
 /**
  * ACTION TYPES
@@ -73,12 +74,15 @@ export const getSingleChart = chartId => async dispatch => {
       })
     }
 
+    let avgColumnData = averageColumnData(columnData, res.data.selectedColumns)
+
     let data = {
       type: [res.data.type],
       data: columnData,
       columns: res.data.selectedColumns,
       scatterData: scatter,
-      imageURL: res.data.imageURL
+      imageURL: res.data.imageURL,
+      averageCD: avgColumnData
     }
 
     dispatch(saved(data))

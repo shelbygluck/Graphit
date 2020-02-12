@@ -66,19 +66,39 @@ class MainComponent extends React.Component {
 
         <div className="chosenGraph">
           {this.props.graph.type[this.state.counter] === 'pie' ? (
-            <PieChartComponent avg={false} />
+            <PieChartComponent
+              avg={false}
+              graphtype={this.props.graph.type[this.state.counter]}
+            />
           ) : this.props.graph.type[this.state.counter] === 'avg-pie' ? (
-            <PieChartComponent avg={true} />
+            <PieChartComponent
+              avg={true}
+              graphtype={this.props.graph.type[this.state.counter]}
+            />
           ) : this.props.graph.type[this.state.counter] === 'bar' ? (
-            <BarGraphComponent avg={false} />
+            <BarGraphComponent
+              avg={false}
+              graphtype={this.props.graph.type[this.state.counter]}
+            />
           ) : this.props.graph.type[this.state.counter] === 'avg-bar' ? (
-            <BarGraphComponent avg={true} />
+            <BarGraphComponent
+              avg={true}
+              graphtype={this.props.graph.type[this.state.counter]}
+            />
           ) : this.props.graph.type[this.state.counter] === 'line' ? (
-            <LineChart avg={false} />
+            <LineChart
+              avg={false}
+              graphtype={this.props.graph.type[this.state.counter]}
+            />
           ) : this.props.graph.type[this.state.counter] === 'avg-line' ? (
-            <LineChart avg={true} />
+            <LineChart
+              avg={true}
+              graphtype={this.props.graph.type[this.state.counter]}
+            />
           ) : this.props.graph.type[this.state.counter] === 'scatter' ? (
-            <Scatterplot />
+            <Scatterplot
+              graphtype={this.props.graph.type[this.state.counter]}
+            />
           ) : (
             <div />
           )}

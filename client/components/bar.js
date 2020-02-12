@@ -36,13 +36,19 @@ export class BarGraphComponent extends Component {
   render() {
     let labels = this.props.graph.data[this.props.graph.columns[1]]
     let data = this.props.graph.data[this.props.graph.columns[0]]
+    let title = `${this.props.graph.columns[0]} by ${
+      this.props.graph.columns[1]
+    }`
     if (this.props.avg === true) {
       labels = this.props.graph.averageCD[this.props.graph.columns[1]]
       data = this.props.graph.averageCD[this.props.graph.columns[0]]
+      title = 'Avgerage ' + title
     }
+    console.log('BAR', this.props)
     return (
       <div>
         <div className="divToPDF">
+          <h1>{title}</h1>
           <Bar
             data={{
               labels: labels,
@@ -58,11 +64,11 @@ export class BarGraphComponent extends Component {
             }}
             height={100}
             options={{
-              title: {
-                dispaly: true,
-                text: 'Average Rainfall Per Month',
-                fontSize: 20
-              },
+              // title: {
+              //   dispaly: true,
+              //   text: 'Average Rainfall Per Month',
+              //   fontSize: 20
+              // },
               legend: {
                 display: true,
                 position: 'right'
@@ -88,7 +94,7 @@ export class BarGraphComponent extends Component {
           </button>
           {this.state.savedGraph === true ? (
             <SaveGraph
-              type="bar"
+              type={this.props.graphtype}
               columnData={this.props.graph.data}
               columns={this.props.graph.columns}
             />
