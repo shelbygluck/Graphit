@@ -1,6 +1,12 @@
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
+  background: rgb(69, 103, 178);
+  background: linear-gradient(
+    90deg,
+    rgba(69, 103, 178, 1) 0%,
+    rgba(138, 185, 255, 1) 100%
+  );
 }
 
 a {
@@ -141,6 +147,7 @@ h3 {
 }
 .graph-name {
   align-self: center;
+}
 
 .saveButtons {
   display: flex;
@@ -149,6 +156,7 @@ h3 {
 .saveBtn {
   padding: 10px;
   margin: 10px;
+}
 
 /* form */
 
@@ -163,4 +171,20 @@ h3 {
 
 .form button {
   margin: 12px 0 12px 0;
+}
+
+#bg-graph {
+  height: 500px;
+  width: 100vw;
+  border: 1px solid red;
+}
+
+circle:hover {
+  fill: #fafafa;
+}
+
+line {
+  fill: none;
+  stroke: #fafafa;
+  stroke-width: 1px;
 }
