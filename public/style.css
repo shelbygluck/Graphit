@@ -128,19 +128,19 @@ h3 {
 }
 
 .all-graphs {
-  margin-top: 10%;
   margin-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: left;
-  background-color: lightcoral;
+  background-color: #ededed;
   border-style: solid;
   border-width: 1px;
 }
 
 .all-graphs-single {
   border-style: solid;
-  border-width: thin;
+  margin: 0;
+  border-width: 1px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -150,6 +150,8 @@ h3 {
 }
 .personal-info {
   display: flex;
+  border-style: solid;
+  border-width: 1px;
   flex-direction: column;
   align-items: center;
 }

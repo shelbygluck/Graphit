@@ -26,7 +26,7 @@ SavedChart.addHook('beforeCreate', (savedChart, options) => {
   if (savedChart.type === 'pie') {
     savedChart.imageURL = '/pie.png'
   } else if (savedChart.type === 'scatter') {
-    savedChart.imageURL = '/scatter.jpg'
+    savedChart.imageURL = '/scatter.png'
   } else if (savedChart.type === 'line') {
     savedChart.imageURL = '/line.png'
   } else if (savedChart.type === 'bar') {
