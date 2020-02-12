@@ -1,6 +1,8 @@
 import React from 'react'
 import {EatLoading} from 'react-loadingg'
 import MainComponent from '../components/mainComponent'
+import {Paper} from '@material-ui/core'
+import Logo from './logo'
 
 export default class Loading extends React.Component {
   constructor(props) {
@@ -20,7 +22,10 @@ export default class Loading extends React.Component {
         {!this.state.done ? (
           <EatLoading color="blue" size="large" />
         ) : (
-          <MainComponent />
+          <Paper elevation={3}>
+            <Logo />
+            <MainComponent />
+          </Paper>
         )}
       </div>
     )

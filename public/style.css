@@ -1,9 +1,17 @@
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
+  background: rgb(69, 103, 178);
+  background: linear-gradient(
+    90deg,
+    rgba(69, 103, 178, 1) 0%,
+    rgba(138, 185, 255, 1) 100%
+  );
 }
 
 a {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   text-decoration: none;
 }
 

@@ -91,7 +91,7 @@ class Columns extends React.Component {
 
   render() {
     return (
-      <Paper className="paper-container" elevation={1}>
+      <Paper className="paper-container" elevation={3}>
         <Grid
           container
           direction="column"
