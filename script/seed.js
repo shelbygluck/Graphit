@@ -106,6 +106,14 @@ async function seed() {
       column1: [2396, 6646, 10625, 5999, 976],
       selectedColumns: ['Restaurants', 'Borough'],
       userId: 1
+    }),
+    SavedChart.create({
+      name: 'Favorite Color',
+      type: 'pie',
+      column2: ['Navy', 'Green', 'Pink', 'Baby Blue', 'Peach'],
+      column1: [14, 66, 40, 53, 6],
+      selectedColumns: ['Number', 'Color'],
+      userId: 1
     })
   ])
 
