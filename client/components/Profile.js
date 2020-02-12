@@ -11,11 +11,14 @@ class Profile extends Component {
   render() {
     console.log('USER PROPS', this.props)
     return (
-      <div>
-        <h4>{this.props.user.firstName}, here are all of your saved charts</h4>
+      <div className="page">
         {/* <p>My Saved Charts:</p> */}
 
         <div className="all-graphs">
+          <div className="personal-info">
+            <img className="photo" src="/default-profile-with-dog.png" />
+            <h4>{this.props.user.firstName}</h4>
+          </div>
           {this.props.savedChart.myCharts.map(chart => {
             return (
               <div className="all-graphs-single" key={chart.id}>
