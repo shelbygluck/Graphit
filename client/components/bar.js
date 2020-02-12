@@ -44,6 +44,9 @@ export class BarGraphComponent extends Component {
       data = this.props.graph.averageCD[this.props.graph.columns[0]]
       title = 'Avgerage ' + title
     }
+    if (this.props.graph.name) {
+      title = this.props.graph.name
+    }
     console.log('BAR', this.props)
     return (
       <div>

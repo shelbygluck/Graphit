@@ -46,6 +46,9 @@ export class LineChart extends React.Component {
       data = this.props.graph.averageCD[this.props.graph.columns[0]]
       title = 'Average ' + title
     }
+    if (this.props.graph.name) {
+      title = this.props.graph.name
+    }
     return (
       <div>
         <div className="divToPDF">
@@ -94,7 +97,7 @@ export class LineChart extends React.Component {
           </button>
           {this.state.savedGraph === true ? (
             <SaveGraph
-              type="line"
+              type={this.props.graphtype}
               columnData={this.props.graph.data}
               columns={this.props.graph.columns}
             />

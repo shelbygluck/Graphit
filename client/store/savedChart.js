@@ -82,7 +82,8 @@ export const getSingleChart = chartId => async dispatch => {
       columns: res.data.selectedColumns,
       scatterData: scatter,
       imageURL: res.data.imageURL,
-      averageCD: avgColumnData
+      averageCD: avgColumnData,
+      name: res.data.name
     }
 
     dispatch(saved(data))

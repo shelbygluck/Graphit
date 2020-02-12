@@ -52,13 +52,11 @@ function findScatterData(parsedData, column1name, column2name) {
 
 function chooseGraph(columnData, column1, column2, option) {
   if (option === 'is broken down by') {
-
     if (columnData[column2].length < 10 && isNumerical(columnData[column1])) {
-
       return ['pie', 'bar']
     }
-    return ['bar', 'pie']
-    // return ['avg-bar', 'avg-pie']
+    // return ['bar', 'pie']
+    return ['avg-bar', 'avg-pie']
   } else if (option === 'compares to') {
     if (isNumerical(columnData[column1]) && isNumerical(columnData[column2])) {
       return ['scatter', 'line']
