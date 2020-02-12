@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getChart} from '../store/savedChart'
 import {Link} from 'react-router-dom'
+import SingleChart from './single-chart'
+import {MeteorRainLoading} from 'react-loadingg'
+import {Grid} from '@material-ui/core'
 
 class Profile extends Component {
   async componentDidMount() {
@@ -12,8 +15,14 @@ class Profile extends Component {
     console.log('USER PROPS', this.props)
     return (
       <div className="page">
-        {/* <p>My Saved Charts:</p> */}
+        <Grid item className="header" sm={12}>
+          <div className="logo">
+            Graph<span className="it">it</span>
+          </div>
+          <h2>Choose a graph to view</h2>
+        </Grid>
 
+        {/* <MeteorRainLoading size="large" speed="25" color="gray" /> */}
         <div className="all-graphs">
           <div className="personal-info">
             <img className="photo" src="/default-profile-with-dog.png" />

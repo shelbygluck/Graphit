@@ -17,7 +17,11 @@ export default class Loading extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.done ? <EatLoading size="large" /> : <MainComponent />}
+        {!this.state.done ? (
+          <EatLoading color="blue" size="large" />
+        ) : (
+          <MainComponent />
+        )}
       </div>
     )
   }

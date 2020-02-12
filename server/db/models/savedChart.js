@@ -28,7 +28,7 @@ SavedChart.addHook('beforeCreate', (savedChart, options) => {
   } else if (savedChart.type === 'avg-pie') {
     savedChart.imageURL = '/pie.png'
   } else if (savedChart.type === 'scatter') {
-    savedChart.imageURL = '/scatter.jpg'
+    savedChart.imageURL = '/scatter.png'
   } else if (savedChart.type === 'line') {
     savedChart.imageURL = '/line.png'
   } else if (savedChart.type === 'avg-line') {
