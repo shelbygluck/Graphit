@@ -49,7 +49,7 @@ function findScatterData(parsedData, column1name, column2name) {
 
 function chooseGraph(columnData, column1, column2, option) {
   if (option === 'is broken down by') {
-    if (columnData[column2].length < 10 && !isNumerical(columnData[1])) {
+    if (columnData[column2].length < 10 && !isNumerical(columnData[column1])) {
       return ['pie', 'bar']
     }
     return ['bar', 'pie']

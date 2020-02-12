@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {saveChart} from '../store/savedChart'
 import {Link} from 'react-router-dom'
+import history from '../history'
 
 class SaveGraph extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class SaveGraph extends Component {
     event.preventDefault()
     console.log(this.state)
     this.props.saveChart(this.state)
+    history.push('/profile')
   }
 
   render() {
