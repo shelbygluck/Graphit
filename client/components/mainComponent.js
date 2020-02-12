@@ -66,11 +66,17 @@ class MainComponent extends React.Component {
 
         <div className="chosenGraph">
           {this.props.graph.type[this.state.counter] === 'pie' ? (
-            <PieChartComponent />
+            <PieChartComponent avg={false} />
+          ) : this.props.graph.type[this.state.counter] === 'avg-pie' ? (
+            <PieChartComponent avg={true} />
           ) : this.props.graph.type[this.state.counter] === 'bar' ? (
-            <BarGraphComponent />
+            <BarGraphComponent avg={false} />
+          ) : this.props.graph.type[this.state.counter] === 'avg-bar' ? (
+            <BarGraphComponent avg={true} />
           ) : this.props.graph.type[this.state.counter] === 'line' ? (
-            <LineChart />
+            <LineChart avg={false} />
+          ) : this.props.graph.type[this.state.counter] === 'avg-line' ? (
+            <LineChart avg={true} />
           ) : this.props.graph.type[this.state.counter] === 'scatter' ? (
             <Scatterplot />
           ) : (

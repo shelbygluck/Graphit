@@ -34,15 +34,21 @@ export class PieChartComponent extends Component {
   }
 
   render() {
+    let labels = this.props.graph.data[this.props.graph.columns[1]]
+    let data = this.props.graph.data[this.props.graph.columns[0]]
+    if (this.props.avg === true) {
+      labels = this.props.graph.averageCD[this.props.graph.columns[1]]
+      data = this.props.graph.averageCD[this.props.graph.columns[0]]
+    }
     return (
       <div>
         <div className="divToPDF">
           <Pie
             data={{
-              labels: this.props.graph.data[this.props.graph.columns[1]],
+              labels: labels,
               datasets: [
                 {
-                  data: this.props.graph.data[this.props.graph.columns[0]],
+                  data: data,
                   backgroundColor: [
                     '#161748',
                     '#478559',

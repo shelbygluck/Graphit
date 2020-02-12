@@ -33,12 +33,13 @@ const average = (arr1, arr2) => {
 }
 
 const averageColumnData = (columnData, columns) => {
+  let acd = {}
   let col0 = columnData[columns[0]]
   let col1 = columnData[columns[1]]
   let avgs = average(col1, col0)
-  columnData[columns[0]] = avgs[1]
-  columnData[columns[1]] = avgs[0]
-  return columnData
+  acd[columns[0]] = avgs[1]
+  acd[columns[1]] = avgs[0]
+  return acd
 }
 
 module.exports = {

@@ -7,14 +7,15 @@ import {isContinuous} from '../helpers/continuous'
 import {isSDLow} from '../helpers/sd'
 import {averageColumnData} from '../helpers/averageColumnData'
 
-const finalDecision = (columnData, scatterData, type, columns) => {
+// const finalDecision = (columnData, scatterData, type, columns) => {
+const finalDecision = (columnData, scatterData, type, columns, averageCD) => {
   console.log('I am at final decision func')
   let testData = {
     type: type,
     columns: columns,
     data: columnData,
-    scatterData: scatterData
-    // averageCD: averageCD
+    scatterData: scatterData,
+    averageCD: averageCD
   }
   store.dispatch(gotGraph(testData))
 }
@@ -81,7 +82,8 @@ export const decisionTree = (parsedData, column1, column2, option) => {
   let scatterData = findScatterData(parsedData, column1, column2)
   let type = chooseGraph(columnData, column1, column2, option)
   let columns = [column1, column2]
-  // let averageCD = averageColumnData(columnData, columns)
+  let averageCD = averageColumnData(columnData, columns)
 
-  finalDecision(columnData, scatterData, type, columns)
+  finalDecision(columnData, scatterData, type, columns, averageCD)
+  // finalDecision(columnData, scatterData, type, columns)
 }

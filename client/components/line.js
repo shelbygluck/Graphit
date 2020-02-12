@@ -35,12 +35,22 @@ export class LineChart extends React.Component {
 
   render() {
     console.log('LINE', this.props)
+    let labels = this.props.graph.data[this.props.graph.columns[1]]
+    let data = this.props.graph.data[this.props.graph.columns[0]]
+    let title = `${this.props.graph.columns[0]} by ${
+      this.props.graph.columns[1]
+    }`
+    if (this.props.avg === true) {
+      labels = this.props.graph.averageCD[this.props.graph.columns[1]]
+      data = this.props.graph.averageCD[this.props.graph.columns[0]]
+      title = 'average ' + title
+    }
     return (
       <div>
         <div className="divToPDF">
           <Line
             data={{
-              labels: this.props.graph.data[this.props.graph.columns[1]],
+              labels: labels,
               datasets: [
                 {
                   label: `${this.props.graph.columns[0]}`,
@@ -49,16 +59,14 @@ export class LineChart extends React.Component {
                   backgroundColor: '#478559',
                   borderColor: '#161748',
                   borderWidth: 2,
-                  data: this.props.graph.data[this.props.graph.columns[0]]
+                  data: data
                 }
               ]
             }}
             options={{
               title: {
                 display: true,
-                text: `${this.props.graph.columns[0]} by ${
-                  this.props.graph.columns[1]
-                }`,
+                text: title,
                 fontSize: 20
               },
               legend: {
