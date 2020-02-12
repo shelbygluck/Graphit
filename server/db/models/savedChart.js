@@ -25,11 +25,17 @@ const SavedChart = db.define('savedChart', {
 SavedChart.addHook('beforeCreate', (savedChart, options) => {
   if (savedChart.type === 'pie') {
     savedChart.imageURL = '/pie.png'
+  } else if (savedChart.type === 'avg-pie') {
+    savedChart.imageURL = '/pie.png'
   } else if (savedChart.type === 'scatter') {
     savedChart.imageURL = '/scatter.jpg'
   } else if (savedChart.type === 'line') {
     savedChart.imageURL = '/line.png'
+  } else if (savedChart.type === 'avg-line') {
+    savedChart.imageURL = '/line.png'
   } else if (savedChart.type === 'bar') {
+    savedChart.imageURL = '/combo-chart.png'
+  } else if (savedChart.type === 'avg-bar') {
     savedChart.imageURL = '/combo-chart.png'
   }
 })
