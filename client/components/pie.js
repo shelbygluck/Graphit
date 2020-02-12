@@ -44,6 +44,9 @@ export class PieChartComponent extends Component {
       data = this.props.graph.averageCD[this.props.graph.columns[0]]
       title = 'Average ' + title
     }
+    if (this.props.graph.name) {
+      title = this.props.graph.name
+    }
     return (
       <div>
         <div className="divToPDF">
@@ -104,7 +107,7 @@ export class PieChartComponent extends Component {
           </button>
           {this.state.savedGraph === true ? (
             <SaveGraph
-              type="pie"
+              type={this.props.graphtype}
               columnData={this.props.graph.data}
               columns={this.props.graph.columns}
             />

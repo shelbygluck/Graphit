@@ -35,6 +35,12 @@ export class Scatterplot extends React.Component {
 
   render() {
     console.log('SCATTERRRR', this.props)
+    let title = `${this.props.graph.columns[0]} vs. ${
+      this.props.graph.columns[1]
+    }`
+    if (this.props.graph.name) {
+      title = this.props.graph.name
+    }
     return (
       <div>
         <div className="divToPDF">
@@ -43,9 +49,7 @@ export class Scatterplot extends React.Component {
               labels: 'Scatter Dataset',
               datasets: [
                 {
-                  label: `${this.props.graph.columns[0]} vs. ${
-                    this.props.graph.columns[1]
-                  }`,
+                  label: title,
                   // label: 'test',
                   data: this.props.graph.scatterData,
                   backgroundColor: 'navy'
