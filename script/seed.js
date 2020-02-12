@@ -2,7 +2,7 @@
 
 const db = require('../server/db')
 const {User} = require('../server/db/models')
-const {UserData} = require('../server/db/models')
+const {SavedChart} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -23,75 +23,88 @@ async function seed() {
     })
   ])
 
-  const datas = await Promise.all([
-    UserData.create({
-      rawData: [
-        {
-          NAME: 'Jonathan Sims',
-          DATE: '11/25/2029',
-          AGE: '37',
-          STATE: 'OH'
-        },
-        {NAME: 'Belle Cox', DATE: '01/29/1994', AGE: '28', STATE: 'IN'},
-        {
-          NAME: 'Calvin Estrada',
-          DATE: '06/26/1924',
-          AGE: '65',
-          STATE: 'SC'
-        },
-        {NAME: 'Roy Wright', DATE: '04/04/1996', AGE: '41', STATE: 'OH'},
-        {
-          NAME: 'Mayme Howell',
-          DATE: '08/22/1997',
-          AGE: '23',
-          STATE: 'AR'
-        },
-        {
-          NAME: 'Emma Morgan',
-          DATE: '12/24/2015',
-          AGE: '54',
-          STATE: 'AZ'
-        },
-        {
-          NAME: 'Jayden Anderson',
-          DATE: '03/12/2047',
-          AGE: '52',
-          STATE: 'AK'
-        },
-        {
-          NAME: 'Dennis Tyler',
-          DATE: '03/10/1978',
-          AGE: '44',
-          STATE: 'WA'
-        },
-        {
-          NAME: 'Jackson Strickland',
-          DATE: '05/28/1943',
-          AGE: '61',
-          STATE: 'UT'
-        },
-        {NAME: 'Henry Wise', DATE: '10/16/1919', AGE: '39', STATE: 'WA'}
+  const saved = await Promise.all([
+    SavedChart.create({
+      name: 'NYC Average Temperature by Month',
+      type: 'line',
+      column1: [38, 42, 50, 61, 71, 79, 84, 83, 75, 64, 54, 43],
+      column2: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
       ],
-      selectedColumns: ['AGE', 'STATE'],
-      userId: 2
+      selectedColumns: ['High °F', 'Month'],
+      imageURL: '/line.png',
+      userId: 1
     }),
-    UserData.create({
-      rawData: [
-        {
-          NAME: 'Dennis Tyler',
-          DATE: '03/10/1978',
-          AGE: '44',
-          STATE: 'WA'
-        },
-        {
-          NAME: 'Jackson Strickland',
-          DATE: '05/28/1943',
-          AGE: '61',
-          STATE: 'UT'
-        },
-        {NAME: 'Henry Wise', DATE: '10/16/1919', AGE: '39', STATE: 'WA'}
+    SavedChart.create({
+      name: 'Height vs. Weight Scatterplot',
+      type: 'scatter',
+      column1: [
+        74,
+        68,
+        70,
+        72,
+        66,
+        66,
+        64,
+        71,
+        72,
+        69,
+        69,
+        72,
+        62,
+        75,
+        70,
+        67,
+        71,
+        65
       ],
-      selectedColumns: ['AGE', 'STATE'],
+      column2: [
+        180,
+        176,
+        165,
+        177,
+        134,
+        125,
+        131,
+        168,
+        185,
+        153,
+        149,
+        173,
+        108,
+        170,
+        155,
+        145,
+        186,
+        141
+      ],
+      selectedColumns: ['HEIGHT (IN)', 'WEIGHT'],
+      imageURL: '/scatter.jpg',
+      userId: 1
+    }),
+    SavedChart.create({
+      name: 'NYC Restaurants by Borough',
+      type: 'bar',
+      column2: [
+        'The Bronx',
+        'Brooklyn',
+        'Manhattan',
+        'Queens',
+        'Staten Island'
+      ],
+      column1: [2396, 6646, 10625, 5999, 976],
+      selectedColumns: ['Restaurants', 'Borough'],
       userId: 1
     })
   ])
