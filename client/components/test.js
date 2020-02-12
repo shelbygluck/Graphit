@@ -5,6 +5,7 @@ import store from '../store'
 import {isNumerical} from '../helpers/numerical'
 import {isContinuous} from '../helpers/continuous'
 import {isSDLow} from '../helpers/sd'
+import {averageColumnData} from '../helpers/averageColumnData'
 
 const finalDecision = (columnData, scatterData, type, columns) => {
   console.log('I am at final decision func')
@@ -13,6 +14,7 @@ const finalDecision = (columnData, scatterData, type, columns) => {
     columns: columns,
     data: columnData,
     scatterData: scatterData
+    // averageCD: averageCD
   }
   store.dispatch(gotGraph(testData))
 }
@@ -49,7 +51,7 @@ function findScatterData(parsedData, column1name, column2name) {
 
 function chooseGraph(columnData, column1, column2, option) {
   if (option === 'is broken down by') {
-    if (columnData[column2].length < 10 && !isNumerical(columnData[1])) {
+    if (columnData[column2].length < 10 && isNumerical(columnData[column1])) {
       return ['pie', 'bar']
     }
     return ['bar', 'pie']
@@ -79,6 +81,7 @@ export const decisionTree = (parsedData, column1, column2, option) => {
   let scatterData = findScatterData(parsedData, column1, column2)
   let type = chooseGraph(columnData, column1, column2, option)
   let columns = [column1, column2]
+  // let averageCD = averageColumnData(columnData, columns)
 
   finalDecision(columnData, scatterData, type, columns)
 }
