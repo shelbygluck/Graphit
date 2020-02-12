@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'
+import {Link} from 'react-router-dom'
 
 export class LineChart extends React.Component {
   constructor() {
