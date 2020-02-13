@@ -1,45 +1,47 @@
-import posed, {PoseGroup} from 'react-pose'
-import React from 'react'
+import React, {Component} from 'react'
+import Example from './poses/firstPose'
+import Example2 from './poses/fastPose'
+import Example3 from './poses/tallPose'
+import Example4 from './poses/newPose'
+import Example5 from './poses/nextPose'
+import Example6 from './poses/switchPose'
 
-const Box = posed.div({
-  small: {
-    width: 50,
-    height: 50,
-    backgroundColor: ({c}) => c
-  },
-  big: {
-    width: 50,
-    height: 75,
-    backgroundColor: ({c}) => c
-  }
-})
-
-class Example extends React.Component {
-  state = {
-    size: 'small',
-    color: '#ededed'
-  }
-
-  componentDidMount() {
-    setInterval(
-      () =>
-        this.setState(state => ({
-          size: state.size === 'small' ? 'big' : 'small'
-        })),
-      500
-    )
-    setInterval(
-      () =>
-        this.setState(state => ({
-          color: state.color === '#ededed' ? 'rgba(69, 103, 178, 1)' : '#ededed'
-        })),
-      520
-    )
-  }
-
+class Pose extends Component {
   render() {
-    return <Box pose={this.state.size} c={this.state.color} className="box" />
+    return (
+      <div className="animationContainer">
+        <Example />
+        <Example2 />
+        <Example5 />
+        <Example6 />
+        <Example4 />
+        <Example />
+        <Example5 />
+        <Example4 />
+        <Example6 />
+        <Example3 />
+        <Example />
+        <Example2 />
+        <Example4 />
+        <Example3 />
+        <Example5 />
+        <Example4 />
+        <Example3 />
+        <Example6 />
+        <Example />
+        <Example2 />
+        <Example4 />
+        <Example5 />
+        <Example2 />
+        <Example3 />
+        <Example4 />
+        <Example6 />
+        <Example5 />
+        <Example />
+        <Example />
+      </div>
+    )
   }
 }
 
-export default Example
+export default Pose

@@ -5,10 +5,7 @@ import Upload from './upload'
 import Columns from './columns'
 import {Grid} from '@material-ui/core'
 import {columns} from '../store/data'
-import Example from './pose'
-import Example2 from './fastPose'
-import Example3 from './tallPose'
-import Example4 from './newPose'
+import Pose from './Pose'
 
 class Main extends Component {
   constructor(props) {
@@ -21,23 +18,7 @@ class Main extends Component {
       <Fragment>
         {this.props.uploadedFile === null ? <Upload /> : <Columns />}
         <div id="backgroundBar">
-          <div className="animationContainer">
-            <Example />
-            <Example2 />
-            <Example4 />
-            <Example />
-            <Example4 />
-            <Example3 />
-            <Example2 />
-            <Example3 />
-            <Example />
-            <Example4 />
-            <Example2 />
-            <Example3 />
-            <Example4 />
-            <Example />
-            <Example />
-          </div>
+          <Pose />
         </div>
       </Fragment>
     )

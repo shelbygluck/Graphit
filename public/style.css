@@ -203,6 +203,7 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+  mix-blend-mode: multiply;
 }
 
 #backgroundBar .animationContainer {

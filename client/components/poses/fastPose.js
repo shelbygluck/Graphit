@@ -3,21 +3,21 @@ import React from 'react'
 
 const Box = posed.div({
   small: {
-    width: 50,
-    height: 220,
+    width: 30,
+    height: 150,
     backgroundColor: ({c}) => c
   },
   big: {
-    width: 50,
-    height: 250,
+    width: 30,
+    height: 100,
     backgroundColor: ({c}) => c
   }
 })
 
-class Example3 extends React.Component {
+class Example2 extends React.Component {
   state = {
-    size: 'big',
-    color: '#ededed'
+    size: 'small',
+    color: 'rgba(69, 103, 178, 1)'
   }
 
   componentDidMount() {
@@ -26,14 +26,17 @@ class Example3 extends React.Component {
         this.setState(state => ({
           size: state.size === 'small' ? 'big' : 'small'
         })),
-      1000
+      1500
     )
     setInterval(
       () =>
         this.setState(state => ({
-          color: state.color === '#ededed' ? 'rgba(69, 103, 178, 1)' : '#ededed'
+          color:
+            state.color === 'rgba(69, 103, 178, 1)'
+              ? '#ededed'
+              : 'rgba(69, 103, 178, 1)'
         })),
-      1270
+      2550
     )
   }
 
@@ -42,4 +45,4 @@ class Example3 extends React.Component {
   }
 }
 
-export default Example3
+export default Example2
