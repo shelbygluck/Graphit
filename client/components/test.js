@@ -61,7 +61,7 @@ function chooseGraph(columnData, column1, column2, option) {
     if (isNumerical(columnData[column1]) && isNumerical(columnData[column2])) {
       return ['scatter', 'line']
     } else {
-      return ['line', 'bar']
+      return ['bar', 'line']
     }
   } else if (option === 'is influenced by') {
     if (!isNumerical(columnData[column1])) {
