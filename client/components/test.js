@@ -78,11 +78,14 @@ function chooseGraph(columnData, column1, column2, option) {
 }
 
 export const decisionTree = (parsedData, column1, column2, option) => {
-  const columnData = findColumnData(parsedData, column1, column2)
+  let columnData = findColumnData(parsedData, column1, column2)
 
   let scatterData = findScatterData(parsedData, column1, column2)
   let type = chooseGraph(columnData, column1, column2, option)
   let columns = [column1, column2]
+  if (!isNumerical(columnData[column1])) {
+    columns = [column2, column1]
+  }
   let averageCD = averageColumnData(columnData, columns)
 
   finalDecision(columnData, scatterData, type, columns, averageCD)
