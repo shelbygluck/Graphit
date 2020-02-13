@@ -18,6 +18,7 @@ a {
 label {
   display: block;
 }
+
 /*
 nav a {
   display: inline-block;
@@ -195,4 +196,19 @@ h3 {
 
 .form button {
   margin: 12px 0 12px 0;
+}
+
+.animationContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#backgroundBar .animationContainer {
+  /* transform-origin: 100% 100%; */
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
+  width: 100%;
 }
