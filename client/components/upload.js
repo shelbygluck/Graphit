@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import Papa from 'papaparse'
-import Columns from './columns'
+import Logo from './logo'
 import {gotParsedData, gotColumns} from '../store/data'
 import {gotUploadedFile} from '../store/upload'
 import {Button, Grid, Paper} from '@material-ui/core'
@@ -58,41 +58,41 @@ class Upload extends React.Component {
 
   render() {
     return (
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-        spacing={2}
-      >
-        <Grid item className="header" sm={12}>
-          <div className="logo">
-            Graph<span className="it">it</span>
-          </div>
-          <h2>Your data, we visualize</h2>
-          <h3>Upload .csv file to get the best visualization of your data</h3>
+      <Paper className="paper-container" elevation={3}>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          spacing={2}
+        >
+          <Grid item className="header" sm={12}>
+            <Logo />
+            <h2>Your data, we visualize</h2>
+            <h3>Upload .csv file to get the best visualization of your data</h3>
+          </Grid>
+          <Grid item sm={12} className="fa-btn">
+            <input
+              type="file"
+              name="file"
+              accept=".csv"
+              onChange={this.handleFileUpload}
+              id="input-upload"
+            />
+            <label htmlFor="input-upload">
+              <Button
+                id="upload-btn"
+                variant="contained"
+                color="primary"
+                component="span"
+              >
+                <FontAwesomeIcon icon={faUpload} />
+                Choose File
+              </Button>
+            </label>
+          </Grid>
         </Grid>
-        <Grid item sm={12} className="fa-btn">
-          <input
-            type="file"
-            name="file"
-            accept=".csv"
-            onChange={this.handleFileUpload}
-            id="input-upload"
-          />
-          <label htmlFor="input-upload">
-            <Button
-              id="upload-btn"
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              <FontAwesomeIcon icon={faUpload} />
-              Choose File
-            </Button>
-          </label>
-        </Grid>
-      </Grid>
+      </Paper>
     )
   }
 }

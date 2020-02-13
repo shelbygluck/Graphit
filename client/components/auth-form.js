@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {createUser} from '../store/user'
 import {Paper, Grid, Button, TextField} from '@material-ui/core'
-
+import Logo from './logo'
 /**
  * COMPONENT
  */
@@ -14,10 +14,10 @@ const AuthForm = props => {
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
-      <Paper className="form">
-        <div className="logo">
-          Graph<span className="it">it</span>
-        </div>
+      <Paper className="form" elevation={3}>
+        <Grid>
+          <Logo />
+        </Grid>
         <form onSubmit={handleSubmit} name={name}>
           <Grid
             container

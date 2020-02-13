@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import SingleChart from './single-chart'
 import {MeteorRainLoading} from 'react-loadingg'
 import {Grid} from '@material-ui/core'
+import Logo from './logo'
 
 class Profile extends Component {
   async componentDidMount() {
@@ -16,9 +17,7 @@ class Profile extends Component {
     return (
       <div className="page">
         <Grid item className="header" sm={12}>
-          <div className="logo">
-            Graph<span className="it">it</span>
-          </div>
+          <Logo />
           <h2>Choose a graph to view</h2>
         </Grid>
 

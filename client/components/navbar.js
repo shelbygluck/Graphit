@@ -9,19 +9,14 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <Grid
     id="navbar"
     container
-    justify="space-between"
+    justify="flex-end"
     alignItems="center"
     spacing={2}
   >
     <Grid item>
-      <Link to="/">Graphit</Link>
-    </Grid>
-    <Grid item>
-      <Link to="/profile">My Charts</Link>
-    </Grid>
-    <Grid item>
       {isLoggedIn ? (
         <Grid item>
+          <Link to="/profile">My Charts</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
