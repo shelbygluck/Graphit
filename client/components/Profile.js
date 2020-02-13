@@ -2,10 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getChart} from '../store/savedChart'
 import {Link} from 'react-router-dom'
-import SingleChart from './single-chart'
-import {MeteorRainLoading} from 'react-loadingg'
 import {Grid} from '@material-ui/core'
 import Logo from './logo'
+import Example from './pose'
 
 class Profile extends Component {
   async componentDidMount() {
@@ -20,8 +19,7 @@ class Profile extends Component {
           <Logo />
           <h2>Choose a graph to view</h2>
         </Grid>
-
-        {/* <MeteorRainLoading size="large" speed="25" color="gray" /> */}
+        <Example />
         <div className="all-graphs">
           <div className="personal-info">
             <img className="photo" src="/default-profile-with-dog.png" />
