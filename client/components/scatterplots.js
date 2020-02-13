@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'
+import SaveButtons from './saveButtons'
 
 export class Scatterplot extends React.Component {
   constructor() {
@@ -14,7 +15,7 @@ export class Scatterplot extends React.Component {
     }
   }
 
-  saveAsPDF() {
+  saveAsPDF = () => {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
       .then(canvas => {
@@ -27,14 +28,13 @@ export class Scatterplot extends React.Component {
       .catch(err => console.log(err.message))
   }
 
-  saveGraph() {
+  saveGraph = () => {
     this.setState({
       savedGraph: true
     })
   }
 
   render() {
-    console.log('SCATTERRRR', this.props)
     let title = `${this.props.graph.columns[0]} vs. ${
       this.props.graph.columns[1]
     }`
@@ -44,13 +44,13 @@ export class Scatterplot extends React.Component {
     return (
       <div>
         <div className="divToPDF">
+          <h2>{title}</h2>
           <Scatter
             data={{
               labels: 'Scatter Dataset',
               datasets: [
                 {
                   label: title,
-                  // label: 'test',
                   data: this.props.graph.scatterData,
                   backgroundColor: 'navy'
                 }
@@ -80,21 +80,8 @@ export class Scatterplot extends React.Component {
             }}
           />
         </div>
-        <div className="saveButtons">
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveAsPDF()}
-          >
-            Save as PDF
-          </button>
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveGraph()}
-          >
-            Save This Graph
-          </button>
+        <div>
+          <SaveButtons saveAsPDF={this.saveAsPDF} saveGraph={this.saveGraph} />
           {this.state.savedGraph === true ? (
             <SaveGraph
               type="scatter"

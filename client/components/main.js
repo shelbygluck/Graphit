@@ -14,9 +14,11 @@ class Main extends Component {
 
   render() {
     return (
-      <Fragment>
-        {this.props.uploadedFile === null ? <Upload /> : <Columns />}
-      </Fragment>
+      <Grid container justify="center">
+        <Grid item lg={10}>
+          {this.props.uploadedFile === null ? <Upload /> : <Columns />}
+        </Grid>
+      </Grid>
     )
   }
 }

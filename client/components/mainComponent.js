@@ -6,8 +6,14 @@ import BarGraphComponent from './bar'
 import PieChartComponent from './pie'
 import LineChart from './line'
 import Scatterplot from './scatterplots'
+import {Grid} from '@material-ui/core'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {
+  faChevronCircleRight,
+  faChevronCircleLeft
+} from '@fortawesome/free-solid-svg-icons'
 
-class MainComponent extends React.Component {
+class MainComponent extends Component {
   constructor() {
     super()
     this.state = {
@@ -25,7 +31,6 @@ class MainComponent extends React.Component {
     this.setState({
       counter: newCounter
     })
-    console.log('NEXT', this.state.counter)
   }
 
   prev() {
@@ -33,7 +38,6 @@ class MainComponent extends React.Component {
     this.setState({
       counter: newCounter
     })
-    console.log('PREV', this.state.counter)
   }
 
   prevButtonDisabled() {
@@ -52,19 +56,24 @@ class MainComponent extends React.Component {
 
   render() {
     return (
-      <div className="carousel">
-        <div className="prevButton">
+      <Grid
+        className="carousel"
+        container
+        justify="space-between"
+        alignItems="center"
+      >
+        <Grid item>
           <button
             type="button"
             className="carouselButton"
             onClick={this.prev}
             disabled={this.prevButtonDisabled()}
           >
-            &#8249;
+            <FontAwesomeIcon icon={faChevronCircleLeft} />
           </button>
-        </div>
+        </Grid>
 
-        <div className="chosenGraph">
+        <Grid item className="chosenGraph">
           {this.props.graph.type[this.state.counter] === 'pie' ? (
             <PieChartComponent
               avg={false}
@@ -100,21 +109,20 @@ class MainComponent extends React.Component {
               graphtype={this.props.graph.type[this.state.counter]}
             />
           ) : (
-            <div />
+            <p>Could not find the appropriate graph from given data</p>
           )}
-        </div>
-
-        <div className="nextButton">
+        </Grid>
+        <Grid item>
           <button
             className="carouselButton"
             type="button"
             onClick={this.next}
             disabled={this.nextButtonDisabled()}
           >
-            &#8250;
+            <FontAwesomeIcon icon={faChevronCircleRight} />
           </button>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     )
   }
 }
