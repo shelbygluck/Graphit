@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /**
  * ACTION TYPES
  */

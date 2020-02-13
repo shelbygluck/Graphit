@@ -1,9 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {gotUploadedFile} from '../store/upload'
-import {gotUserOptions} from '../store/upload'
+import {gotUploadedFile, gotUserOptions} from '../store/upload'
 import {
-  Fragment,
   Grid,
   Select,
   MenuItem,
@@ -29,7 +27,6 @@ class Columns extends React.Component {
     }
   }
 
-  // updates userOptions in redux store whenever user changes any selections
   handleOnSelect = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -38,7 +35,6 @@ class Columns extends React.Component {
     this.props.setUserOptions({...this.state, ...newUserOption})
   }
 
-  // creates a list of column names for a drop down selection
   createOptions = columns => {
     let options = []
     columns.map((column, idx) => {
@@ -51,7 +47,6 @@ class Columns extends React.Component {
     return options
   }
 
-  // creates a list of radio buttons for relationship option
   createRadioButtons = () => {
     let radioButtons = []
     const relationships = [

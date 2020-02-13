@@ -25,7 +25,6 @@ class MainComponent extends React.Component {
     this.setState({
       counter: newCounter
     })
-    console.log('NEXT', this.state.counter)
   }
 
   prev() {
@@ -33,7 +32,6 @@ class MainComponent extends React.Component {
     this.setState({
       counter: newCounter
     })
-    console.log('PREV', this.state.counter)
   }
 
   prevButtonDisabled() {
@@ -122,11 +120,5 @@ class MainComponent extends React.Component {
 const mapStateToProps = state => ({
   graph: state.graph
 })
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadColumnData: id => dispatch(scatterData(id))
-//   }
-// }
 
 export default connect(mapStateToProps, null)(MainComponent)

@@ -25,8 +25,4 @@ const mapState = state => ({
   uploadedFile: state.upload.file
 })
 
-// const mapDispatch = dispatch => ({
-//   handleSubmit: file => dispatch(gotUploadFile(file))
-// })
-
 export default connect(mapState)(Main)

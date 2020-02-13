@@ -1,11 +1,9 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-// import {columnData} from '../store/data'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'
-import {Link} from 'react-router-dom'
 
 export class LineChart extends React.Component {
   constructor() {
@@ -19,7 +17,6 @@ export class LineChart extends React.Component {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
       .then(canvas => {
-        console.log(canvas)
         const imgData = canvas.toDataURL('image/png')
         const pdf = new pdfConverter('l', 'pt')
         pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)
@@ -35,7 +32,6 @@ export class LineChart extends React.Component {
   }
 
   render() {
-    console.log('LINE', this.props)
     let labels = this.props.graph.data[this.props.graph.columns[1]]
     let data = this.props.graph.data[this.props.graph.columns[0]]
     let title = `${this.props.graph.columns[0]} by ${
