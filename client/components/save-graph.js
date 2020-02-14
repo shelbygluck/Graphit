@@ -26,13 +26,11 @@ class SaveGraph extends Component {
   }
   submitHandle(event) {
     event.preventDefault()
-    console.log(this.state)
     this.props.saveChart(this.state)
     history.push('/profile')
   }
 
   render() {
-    console.log('SAVING GRAPH', this.props)
     return (
       <div>
         <form onSubmit={this.submitHandle}>

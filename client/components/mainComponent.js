@@ -95,10 +95,4 @@ const mapStateToProps = state => ({
   graph: state.graph
 })
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadColumnData: id => dispatch(scatterData(id))
-//   }
-// }
-
 export default connect(mapStateToProps, null)(MainComponent)

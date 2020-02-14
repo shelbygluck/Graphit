@@ -3,7 +3,6 @@ const {SavedChart} = require('../db/models')
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('HERE', req.body)
     const response = await SavedChart.create({
       name: req.body.name,
       type: req.body.type,

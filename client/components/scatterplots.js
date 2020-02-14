@@ -1,7 +1,6 @@
 import React from 'react'
 import {Scatter} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-// import {scatterData} from '../store/data'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'

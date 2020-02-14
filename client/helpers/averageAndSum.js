@@ -32,7 +32,7 @@ const average = (arr1, arr2) => {
   return [labels, data]
 }
 
-const sum = (arr1, arr2, columnNames) => {
+const sum = (arr1, arr2) => {
   let dict = helper(arr1, arr2)
   let labels = []
   let data = []

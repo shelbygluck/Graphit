@@ -7,7 +7,6 @@ import {isContinuous} from '../helpers/continuous'
 import {isSDLow} from '../helpers/sd'
 import {averageColumnData} from '../helpers/averageColumnData'
 
-// const finalDecision = (columnData, scatterData, type, columns) => {
 const finalDecision = (columnData, scatterData, type, columns, averageCD) => {
   let testData = {
     type: type,
@@ -33,7 +32,6 @@ function findColumnData(parsedData, column1name, column2name) {
       }
     }
   })
-  console.log(dict)
   return dict
 }
 
@@ -54,7 +52,6 @@ function chooseGraph(columnData, column1, column2, option) {
     if (columnData[column2].length < 10 && isNumerical(columnData[column1])) {
       return ['pie', 'bar']
     }
-    // return ['bar', 'pie']
     return ['avg-bar', 'avg-pie']
   } else if (option === 'compares to') {
     if (isNumerical(columnData[column1]) && isNumerical(columnData[column2])) {
@@ -88,5 +85,4 @@ export const decisionTree = (parsedData, column1, column2, option) => {
   let averageCD = averageColumnData(columnData, columns)
 
   finalDecision(columnData, scatterData, type, columns, averageCD)
-  // finalDecision(columnData, scatterData, type, columns)
 }
