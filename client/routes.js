@@ -34,13 +34,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route exact path="/pie" component={PieChartComponent} />
-            <Route path="/line" component={LineChart} />
-            <Route path="/scatterplots" component={ScatterPlot} />
-            <Route path="/bar" component={BarGraphComponent} />
-            <Route path="/test" component={MainComponent} />
             <Route path="/profile" component={Profile} />
-            <Route path="/graph" component={Loading} />
             <Route path="/single/:id" component={SingleChart} />
           </Switch>
         )}

@@ -61,7 +61,7 @@ class Submit extends React.Component {
         disabled={isDisabled}
         onClick={this.testDecisionTree}
       >
-        <Link to="/graph">Graph it!</Link>
+        Graph it!
       </Button>
     )
   }

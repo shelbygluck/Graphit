@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'
+import {Link} from 'react-router-dom'
+import SaveButtons from './saveButtons'
 
 export class LineChart extends React.Component {
   constructor() {
@@ -48,6 +50,7 @@ export class LineChart extends React.Component {
     return (
       <div>
         <div className="divToPDF">
+          <h2>{title}</h2>
           <Line
             data={{
               labels: labels,
@@ -77,20 +80,7 @@ export class LineChart extends React.Component {
           />
         </div>
         <div className="saveButtons">
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveAsPDF()}
-          >
-            Save as PDF
-          </button>
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveGraph()}
-          >
-            Save This Graph
-          </button>
+          <SaveButtons saveAsPDF={this.saveAsPDF} saveGraph={this.saveGraph} />
           {this.state.savedGraph === true ? (
             <SaveGraph
               type={this.props.graphtype}
