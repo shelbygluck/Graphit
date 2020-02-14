@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {Bar} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-// import {columnData} from '../store/data'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'
+import SaveButtons from './saveButtons'
 
 export class BarGraphComponent extends Component {
   constructor() {
@@ -18,7 +18,6 @@ export class BarGraphComponent extends Component {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
       .then(canvas => {
-        console.log(canvas)
         const imgData = canvas.toDataURL('image/png')
         const pdf = new pdfConverter('l', 'pt')
         pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)
@@ -47,11 +46,10 @@ export class BarGraphComponent extends Component {
     if (this.props.graph.name) {
       title = this.props.graph.name
     }
-    console.log('BAR', this.props)
     return (
       <div>
         <div className="divToPDF">
-          <h1>{title}</h1>
+          <h2>{title}</h2>
           <Bar
             data={{
               labels: labels,
@@ -67,11 +65,6 @@ export class BarGraphComponent extends Component {
             }}
             height={100}
             options={{
-              // title: {
-              //   dispaly: true,
-              //   text: 'Average Rainfall Per Month',
-              //   fontSize: 20
-              // },
               legend: {
                 display: true,
                 position: 'right'
@@ -81,28 +74,13 @@ export class BarGraphComponent extends Component {
           <br />
         </div>
         <div className="saveButtons">
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveAsPDF()}
-          >
-            Save as PDF
-          </button>
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveGraph()}
-          >
-            Save This Graph
-          </button>
-          {this.state.savedGraph === true ? (
+          <SaveButtons saveAsPDF={this.saveAsPDF} saveGraph={this.saveGraph} />
+          {this.state.savedGraph === true && (
             <SaveGraph
               type={this.props.graphtype}
               columnData={this.props.graph.data}
               columns={this.props.graph.columns}
             />
-          ) : (
-            <div />
           )}
         </div>
       </div>

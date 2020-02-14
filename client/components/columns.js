@@ -1,9 +1,7 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
-import {gotUploadedFile} from '../store/upload'
-import {gotUserOptions} from '../store/upload'
+import {gotUploadedFile, gotUserOptions} from '../store/upload'
 import {
-  Fragment,
   Grid,
   Select,
   MenuItem,
@@ -18,6 +16,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import Submit from './submit'
+import MainComponent from './mainComponent'
 
 class Columns extends React.Component {
   constructor() {
@@ -29,7 +28,6 @@ class Columns extends React.Component {
     }
   }
 
-  // updates userOptions in redux store whenever user changes any selections
   handleOnSelect = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -38,7 +36,6 @@ class Columns extends React.Component {
     this.props.setUserOptions({...this.state, ...newUserOption})
   }
 
-  // creates a list of column names for a drop down selection
   createOptions = columns => {
     let options = []
     columns.map((column, idx) => {
@@ -51,7 +48,6 @@ class Columns extends React.Component {
     return options
   }
 
-  // creates a list of radio buttons for relationship option
   createRadioButtons = () => {
     let radioButtons = []
     const relationships = [
@@ -89,82 +85,94 @@ class Columns extends React.Component {
     this.props.uploadFile(null)
   }
 
-  render() {
+  displayOutput = () => {
     return (
       <Paper className="paper-container" elevation={3}>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={2}
-        >
-          <Grid className="fa-btn" container justify="flex-start">
-            <Button onClick={this.clearUploadedFile}>
-              <FontAwesomeIcon icon={faChevronLeft} />
-              <div>Upload a different file</div>
-            </Button>
-          </Grid>
-          <Grid item>
-            <h2>Help us to understand your data relationships</h2>
-          </Grid>
+        <MainComponent />
+      </Paper>
+    )
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <Paper className="paper-container" elevation={3}>
           <Grid
             container
-            direction="row"
+            direction="column"
             justify="center"
             alignItems="center"
             spacing={2}
           >
+            <Grid className="fa-btn" container justify="flex-start">
+              <Button onClick={this.clearUploadedFile}>
+                <FontAwesomeIcon icon={faChevronLeft} />
+                <div>Upload a different file</div>
+              </Button>
+            </Grid>
             <Grid item>
-              <FormControl>
-                <InputLabel id="column1">First choice</InputLabel>
-                <Select
+              <h2>Help us to understand your data relationships</h2>
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+              spacing={2}
+            >
+              <Grid item>
+                <FormControl>
+                  <InputLabel id="column1">First choice</InputLabel>
+                  <Select
+                    className="select"
+                    labelId="column1"
+                    name="column1"
+                    value={this.state.column1}
+                    onChange={this.handleOnSelect}
+                  >
+                    {this.createOptions(this.props.columns)}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <RadioGroup
                   className="select"
-                  labelId="column1"
-                  name="column1"
-                  value={this.state.column1}
+                  name="option"
                   onChange={this.handleOnSelect}
                 >
-                  {this.createOptions(this.props.columns)}
-                </Select>
-              </FormControl>
+                  {this.createRadioButtons()}
+                </RadioGroup>
+              </Grid>
+              <Grid item>
+                <FormControl>
+                  <InputLabel id="column2">Second choice</InputLabel>
+                  <Select
+                    className="select"
+                    labelId="column2"
+                    name="column2"
+                    value={this.state.column2}
+                    onChange={this.handleOnSelect}
+                  >
+                    {this.createOptions(this.props.columns)}
+                  </Select>
+                </FormControl>
+              </Grid>
             </Grid>
-            <Grid item>
-              <RadioGroup
-                className="select"
-                name="option"
-                onChange={this.handleOnSelect}
-              >
-                {this.createRadioButtons()}
-              </RadioGroup>
-            </Grid>
-            <Grid item>
-              <FormControl>
-                <InputLabel id="column2">Second choice</InputLabel>
-                <Select
-                  className="select"
-                  labelId="column2"
-                  name="column2"
-                  value={this.state.column2}
-                  onChange={this.handleOnSelect}
-                >
-                  {this.createOptions(this.props.columns)}
-                </Select>
-              </FormControl>
+            {this.description()}
+            <Grid item sm={12}>
+              <Submit />
             </Grid>
           </Grid>
-          {this.description()}
-          <Grid item sm={12}>
-            <Submit />
-          </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+        {this.props.output.length > 0 && this.displayOutput()}
+      </Fragment>
     )
   }
 }
 
 const mapState = state => ({
-  columns: state.data.columns
+  columns: state.data.columns,
+  output: state.graph.type
 })
 
 const mapDispatch = dispatch => ({

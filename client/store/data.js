@@ -1,8 +1,6 @@
 import axios from 'axios'
-import history from '../history'
 import {combineReducers} from 'redux'
-import {isUnique} from '../helpers/isUnique'
-import {average, sum} from '../helpers/averageAndSum'
+import {average} from '../helpers/averageAndSum'
 
 /**
  * ACTION TYPES
@@ -34,7 +32,6 @@ const gotScatterData = columnData => ({type: GOT_SCATTER_DATA, columnData})
  */
 export const columns = userId => async dispatch => {
   try {
-    // let keys = Object.keys(jsondata[0])
     let res = await axios.get(`/api/userData/${userId}`)
     let selectedColumns = res.data.selectedColumns
     dispatch(gotColumns(selectedColumns))

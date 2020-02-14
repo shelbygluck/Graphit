@@ -8,8 +8,6 @@ let labels2 = ['NC', 'NY', 'OH', 'KY', 'NJ', 'CT', 'MA']
 let data = [1, 2, 3, 4, 5, 6, 7]
 let strData = ['1', '2', '3', '4', '5', '6', '7']
 
-// average(arr1, arr2)
-// sum(arr1, arr2)
 describe('average', () => {
   it('averages numbers for data with repetitive labels', () => {
     expect(average(labels, data)).to.deep.equal([['NY', 'CT', 'OH'], [2, 5, 7]])

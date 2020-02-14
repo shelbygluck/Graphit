@@ -2,7 +2,6 @@ import axios from 'axios'
 import {combineReducers} from 'redux'
 import store from '../store'
 import {gotGraph} from '../store/graph'
-import {push} from 'react-router-redux'
 import {averageColumnData} from '../helpers/averageColumnData'
 
 /**
@@ -41,8 +40,6 @@ export const saveChart = chart => async dispatch => {
   try {
     let res = await axios.post(`/api/saved`, chart)
     dispatch(saved(res.data))
-    // console.log("TRYING TO REDIRECT")
-    // dispatch(push('/profile'))
   } catch (err) {
     console.error(err)
   }
@@ -60,7 +57,6 @@ export const getChart = userId => async dispatch => {
 export const getSingleChart = chartId => async dispatch => {
   try {
     let res = await axios.get(`/api/saved/chart/${chartId}`)
-    console.log('HERE', res.data)
 
     let columnData = {}
     columnData[res.data.selectedColumns[0]] = res.data.column1

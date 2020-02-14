@@ -11,7 +11,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('USER PROPS', this.props)
     return (
       <div className="page">
         <Grid item className="header" sm={12}>

@@ -15,12 +15,11 @@ class Main extends Component {
 
   render() {
     return (
-      <Fragment>
-        {this.props.uploadedFile === null ? <Upload /> : <Columns />}
-        <div id="backgroundBar">
-          <Pose />
-        </div>
-      </Fragment>
+      <Grid container justify="center">
+        <Grid item lg={10}>
+          {this.props.uploadedFile === null ? <Upload /> : <Columns />}
+        </Grid>
+      </Grid>
     )
   }
 }
@@ -28,9 +27,5 @@ class Main extends Component {
 const mapState = state => ({
   uploadedFile: state.upload.file
 })
-
-// const mapDispatch = dispatch => ({
-//   handleSubmit: file => dispatch(gotUploadFile(file))
-// })
 
 export default connect(mapState)(Main)

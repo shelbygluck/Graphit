@@ -14,12 +14,8 @@ class SingleChart extends React.Component {
   }
 
   render() {
-    console.log('SINGLE PROPS', this.props)
-    // console.log("HERE", this.props.location.match.params.id)
     return (
-      // <div className="carousel">
       <div>
-        {/* <div className="chosenGraph"> */}
         <div>
           {this.props.graph.type[0] === 'pie' ? (
             <PieChartComponent

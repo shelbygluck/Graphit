@@ -61,8 +61,8 @@ form div {
 }
 
 .paper-container {
-  min-width: 600px;
-  margin: 12px 10%;
+  min-width: 800px;
+  margin: 12px 0 24px 0;
   padding: 24px;
 }
 
@@ -98,36 +98,19 @@ h3 {
 /* graph output */
 
 .carousel {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  /* justify-content: space-evenly; */
-}
-.prevButton {
-  flex-basis: 10%;
-  display: flex;
-  justify-content: center;
+  margin-bottom: 24px;
 }
 .chosenGraph {
-  flex-basis: 80%;
-  padding: 10px;
-}
-.nextButton {
-  flex-basis: 10%;
-  display: flex;
-  justify-content: center;
+  flex-basis: 90%;
 }
 .carouselButton {
-  border-radius: 50%;
-  font-size: 20px;
-  padding: 10px 15px;
-  color: white;
-  background-color: grey;
+  font-size: 34px;
+  color: #0a044a;
+  border: none;
 }
 .carouselButton:disabled {
-  background-color: white;
-  border-color: white;
+  color: lightgray;
+  border: none;
 }
 
 .page {
@@ -174,15 +157,10 @@ h3 {
 .graph-name {
   align-self: center;
 }
-
 .saveButtons {
-  display: flex;
-  justify-content: center;
+  margin-top: 24px;
 }
-.saveBtn {
-  padding: 10px;
-  margin: 10px;
-}
+
 /* form */
 
 .form {

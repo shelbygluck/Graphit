@@ -22,7 +22,7 @@ const SavedChart = db.define('savedChart', {
   }
 })
 
-SavedChart.addHook('beforeCreate', (savedChart, options) => {
+SavedChart.addHook('beforeCreate', savedChart => {
   if (savedChart.type === 'pie') {
     savedChart.imageURL = '/pie.png'
   } else if (savedChart.type === 'avg-pie') {

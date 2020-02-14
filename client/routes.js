@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {Login, Signup} from './components'
 import PieChartComponent from './components/pie'
 import LineChart from './components/line'
 import ScatterPlot from './components/scatterplots'
@@ -34,13 +34,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route exact path="/pie" component={PieChartComponent} />
-            <Route path="/line" component={LineChart} />
-            <Route path="/scatterplots" component={ScatterPlot} />
-            <Route path="/bar" component={BarGraphComponent} />
-            <Route path="/test" component={MainComponent} />
             <Route path="/profile" component={Profile} />
-            <Route path="/graph" component={Loading} />
             <Route path="/single/:id" component={SingleChart} />
           </Switch>
         )}
@@ -56,8 +50,6 @@ class Routes extends Component {
  */
 const mapState = state => {
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id
   }
 }
@@ -70,8 +62,6 @@ const mapDispatch = dispatch => {
   }
 }
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes))
 
 /**

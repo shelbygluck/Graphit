@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {columnData} from '../store/data'
 import {Pie} from 'react-chartjs-2'
 import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'
+import SaveButtons from './saveButtons'
 
 export class PieChartComponent extends Component {
   constructor() {
@@ -18,7 +18,6 @@ export class PieChartComponent extends Component {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
       .then(canvas => {
-        console.log(canvas)
         const imgData = canvas.toDataURL('image/png')
         const pdf = new pdfConverter('l', 'pt')
         pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)
@@ -50,7 +49,7 @@ export class PieChartComponent extends Component {
     return (
       <div>
         <div className="divToPDF">
-          <h1>{title}</h1>
+          <h2>{title}</h2>
           <Pie
             data={{
               labels: labels,
@@ -91,20 +90,7 @@ export class PieChartComponent extends Component {
         </div>
 
         <div className="saveButtons">
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveAsPDF()}
-          >
-            Save as PDF
-          </button>
-          <button
-            className="saveBtn"
-            type="button"
-            onClick={() => this.saveGraph()}
-          >
-            Save This Graph
-          </button>
+          <SaveButtons saveAsPDF={this.saveAsPDF} saveGraph={this.saveGraph} />
           {this.state.savedGraph === true ? (
             <SaveGraph
               type={this.props.graphtype}

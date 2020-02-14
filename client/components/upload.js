@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import Papa from 'papaparse'
 import Logo from './logo'
@@ -18,14 +18,11 @@ class Upload extends React.Component {
 
   handleFileUpload = event => {
     const file = event.target.files[0]
-    console.log('event.target.files', file)
     this.setState({
       uploadedFile: file
     })
-    // upload file to redux store
     this.props.uploadFile(file)
 
-    // parse the uploaded file
     this.parseUploadedFile(file)
   }
 
@@ -37,11 +34,6 @@ class Upload extends React.Component {
       header: true,
       step: row => {
         data.push(row.data)
-        // let progress = row.meta.cursor
-        // let newPercent = Math.round(progress / size * 100)
-        // if (percent === newPercent) return
-        // percent = newPercent
-        // this.updateProgressBar(newPercent)
       },
       complete: () => {
         this.gotParsedData(data)
@@ -50,9 +42,7 @@ class Upload extends React.Component {
   }
 
   gotParsedData = parsedData => {
-    // set list of columns to redux store
     this.props.gotColumns(Object.keys(parsedData[0]))
-    // set parsed data state to redux store
     this.props.gotParsedData(parsedData)
   }
 

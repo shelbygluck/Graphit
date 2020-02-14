@@ -9,6 +9,7 @@ router.post('/', upload, async (req, res, next) => {
   const csvString = req.file.buffer.toString()
   const jsonData = parse(csvString, {
     columns: true,
+    // eslint-disable-next-line camelcase
     skip_empty_lines: true
   })
   const columns = req.body.selectedColumns.split(',')
