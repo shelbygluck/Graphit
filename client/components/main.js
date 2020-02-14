@@ -15,11 +15,16 @@ class Main extends Component {
 
   render() {
     return (
-      <Grid container justify="center">
-        <Grid item lg={10}>
-          {this.props.uploadedFile === null ? <Upload /> : <Columns />}
+      <Fragment>
+        <Grid container justify="center">
+          <Grid item lg={10}>
+            {this.props.uploadedFile === null ? <Upload /> : <Columns />}
+          </Grid>
         </Grid>
-      </Grid>
+        <div id="backgroundBar">
+          <Pose />
+        </div>
+      </Fragment>
     )
   }
 }
