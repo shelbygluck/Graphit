@@ -21,16 +21,21 @@ class Main extends Component {
             {this.props.uploadedFile === null ? <Upload /> : <Columns />}
           </Grid>
         </Grid>
-        <div id="backgroundBar">
-          <Pose />
-        </div>
+        {this.props.graph.type.length < 1 ? (
+          <div id="backgroundBar">
+            <Pose />
+          </div>
+        ) : (
+          ' '
+        )}
       </Fragment>
     )
   }
 }
 
 const mapState = state => ({
-  uploadedFile: state.upload.file
+  uploadedFile: state.upload.file,
+  graph: state.graph
 })
 
 export default connect(mapState)(Main)
