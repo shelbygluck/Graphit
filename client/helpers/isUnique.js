@@ -4,6 +4,4 @@ export const isUnique = function(array) {
     if (!filteredArray.includes(item)) filteredArray.push(item)
     return filteredArray
   })
-
-  console.log(filteredArray)
 }

@@ -18,7 +18,6 @@ export class BarGraphComponent extends Component {
     let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
       .then(canvas => {
-        console.log(canvas)
         const imgData = canvas.toDataURL('image/png')
         const pdf = new pdfConverter('l', 'pt')
         pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)

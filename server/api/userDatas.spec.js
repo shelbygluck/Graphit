@@ -4,7 +4,7 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const {UserData, User} = require('../db/models')
+const {UserData} = require('../db/models')
 
 describe('UserData get routes', () => {
   beforeEach(() => {

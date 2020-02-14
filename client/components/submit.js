@@ -13,18 +13,15 @@ class Submit extends React.Component {
 
   testDecisionTree = event => {
     event.preventDefault()
-    console.log('test Decision Tree')
     let parsedData = this.props.parsedData
     let column1 = this.props.userOptions.column1
     let column2 = this.props.userOptions.column2
     let option = this.props.userOptions.option
-    console.log('PASSING IN:', parsedData, column1, column2, option)
     decisionTree(parsedData, column1, column2, option)
   }
 
   handleFileSubmit = async event => {
     event.preventDefault()
-    console.log('test Decision Tree')
 
     let formData = new FormData()
     formData.append('file', this.props.uploadedFile)
@@ -38,7 +35,6 @@ class Submit extends React.Component {
         data: formData,
         headers: {'Content-Type': 'multipart/form-data'}
       })
-      console.log('post api/charts', data)
     } catch (err) {
       console.log(err)
     }
@@ -76,9 +72,5 @@ const mapState = state => ({
   parsedData: state.data.parsedData,
   userOptions: state.upload.userOptions
 })
-
-// const mapDispatch = dispatch => ({
-//   handleSubmit: file => dispatch(gotUploadFile(file))
-// })
 
 export default connect(mapState)(Submit)
