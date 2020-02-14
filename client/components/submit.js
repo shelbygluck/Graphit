@@ -13,12 +13,10 @@ class Submit extends React.Component {
 
   testDecisionTree = event => {
     event.preventDefault()
-    console.log('test Decision Tree')
     let parsedData = this.props.parsedData
     let column1 = this.props.userOptions.column1
     let column2 = this.props.userOptions.column2
     let option = this.props.userOptions.option
-    console.log('PASSING IN:', parsedData, column1, column2, option)
     decisionTree(parsedData, column1, column2, option)
   }
 

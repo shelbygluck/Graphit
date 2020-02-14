@@ -12,6 +12,7 @@ import {
   faChevronCircleRight,
   faChevronCircleLeft
 } from '@fortawesome/free-solid-svg-icons'
+import OutputGraph from './outputGraph'
 
 class MainComponent extends Component {
   constructor() {
@@ -72,45 +73,8 @@ class MainComponent extends Component {
             <FontAwesomeIcon icon={faChevronCircleLeft} />
           </button>
         </Grid>
-
-        <Grid item className="chosenGraph">
-          {this.props.graph.type[this.state.counter] === 'pie' ? (
-            <PieChartComponent
-              avg={false}
-              graphtype={this.props.graph.type[this.state.counter]}
-            />
-          ) : this.props.graph.type[this.state.counter] === 'avg-pie' ? (
-            <PieChartComponent
-              avg={true}
-              graphtype={this.props.graph.type[this.state.counter]}
-            />
-          ) : this.props.graph.type[this.state.counter] === 'bar' ? (
-            <BarGraphComponent
-              avg={false}
-              graphtype={this.props.graph.type[this.state.counter]}
-            />
-          ) : this.props.graph.type[this.state.counter] === 'avg-bar' ? (
-            <BarGraphComponent
-              avg={true}
-              graphtype={this.props.graph.type[this.state.counter]}
-            />
-          ) : this.props.graph.type[this.state.counter] === 'line' ? (
-            <LineChart
-              avg={false}
-              graphtype={this.props.graph.type[this.state.counter]}
-            />
-          ) : this.props.graph.type[this.state.counter] === 'avg-line' ? (
-            <LineChart
-              avg={true}
-              graphtype={this.props.graph.type[this.state.counter]}
-            />
-          ) : this.props.graph.type[this.state.counter] === 'scatter' ? (
-            <Scatterplot
-              graphtype={this.props.graph.type[this.state.counter]}
-            />
-          ) : (
-            <p>Could not find the appropriate graph from given data</p>
-          )}
+        <Grid item sm={10}>
+          <OutputGraph graphType={this.props.graph.type[this.state.counter]} />
         </Grid>
         <Grid item>
           <button

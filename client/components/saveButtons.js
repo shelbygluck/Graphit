@@ -3,7 +3,13 @@ import {Grid, Button} from '@material-ui/core'
 
 const SaveButtons = ({saveAsPDF, saveGraph}) => {
   return (
-    <Grid container justify="center" alignItems="center" spacing={2}>
+    <Grid
+      className="saveButtons"
+      container
+      justify="center"
+      alignItems="center"
+      spacing={2}
+    >
       <Grid item>
         <Button variant="contained" color="primary" onClick={saveAsPDF}>
           Save as PDF

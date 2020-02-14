@@ -1,37 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {columnData} from '../store/data'
 import {Pie} from 'react-chartjs-2'
 import html2canvas from 'html2canvas'
-const pdfConverter = require('jspdf')
-import SaveGraph from './save-graph'
 import SaveButtons from './saveButtons'
 
 export class PieChartComponent extends Component {
   constructor() {
     super()
-    this.state = {
-      savedGraph: false
-    }
-  }
-
-  saveAsPDF() {
-    let input = window.document.getElementsByClassName('divToPDF')[0]
-    html2canvas(input)
-      .then(canvas => {
-        console.log(canvas)
-        const imgData = canvas.toDataURL('image/png')
-        const pdf = new pdfConverter('l', 'pt')
-        pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)
-        pdf.save('test.pdf')
-      })
-      .catch(err => console.log(err.message))
-  }
-
-  saveGraph() {
-    this.setState({
-      savedGraph: true
-    })
   }
 
   render() {
@@ -49,60 +24,44 @@ export class PieChartComponent extends Component {
       title = this.props.graph.name
     }
     return (
-      <div>
-        <div className="divToPDF">
-          <h2>{title}</h2>
-          <Pie
-            data={{
-              labels: labels,
-              datasets: [
-                {
-                  data: data,
-                  backgroundColor: [
-                    '#161748',
-                    '#478559',
-                    '#f95d9b',
-                    '#39a0ca',
-                    '#fea49f',
-                    '#fbaf08',
-                    '#51d0de',
-                    '#bf4aa8',
-                    '#c3d7c47',
-                    '#e05915',
-                    '#5252d4',
-                    '#8bf0ba',
-                    '#0e0fed',
-                    '#94f0f1',
-                    '#f2b1d8',
-                    '#ffdc6a',
-                    '#dcc7aa'
-                  ],
-                  options: {
-                    title: {
-                      display: true,
-                      text: 'Custom Chart Title'
-                    }
+      <div className="divToPDF">
+        <h2>{title}</h2>
+        <Pie
+          data={{
+            labels: labels,
+            datasets: [
+              {
+                data: data,
+                backgroundColor: [
+                  '#161748',
+                  '#478559',
+                  '#f95d9b',
+                  '#39a0ca',
+                  '#fea49f',
+                  '#fbaf08',
+                  '#51d0de',
+                  '#bf4aa8',
+                  '#c3d7c47',
+                  '#e05915',
+                  '#5252d4',
+                  '#8bf0ba',
+                  '#0e0fed',
+                  '#94f0f1',
+                  '#f2b1d8',
+                  '#ffdc6a',
+                  '#dcc7aa'
+                ],
+                options: {
+                  title: {
+                    display: true,
+                    text: 'Custom Chart Title'
                   }
                 }
-              ]
-            }}
-            height={100}
-          />
-          <br />
-        </div>
-
-        <div className="saveButtons">
-          <SaveButtons saveAsPDF={this.saveAsPDF} saveGraph={this.saveGraph} />
-          {this.state.savedGraph === true ? (
-            <SaveGraph
-              type={this.props.graphtype}
-              columnData={this.props.graph.data}
-              columns={this.props.graph.columns}
-            />
-          ) : (
-            <div />
-          )}
-        </div>
+              }
+            ]
+          }}
+          height={100}
+        />
       </div>
     )
   }

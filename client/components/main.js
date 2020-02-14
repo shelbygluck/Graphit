@@ -15,7 +15,7 @@ class Main extends Component {
   render() {
     return (
       <Grid container justify="center">
-        <Grid item lg={10}>
+        <Grid item sm={11}>
           {this.props.uploadedFile === null ? <Upload /> : <Columns />}
         </Grid>
       </Grid>

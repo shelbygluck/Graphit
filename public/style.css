@@ -96,12 +96,6 @@ h3 {
 
 /* graph output */
 
-.carousel {
-  margin-bottom: 24px;
-}
-.chosenGraph {
-  flex-basis: 90%;
-}
 .carouselButton {
   font-size: 34px;
   color: #0a044a;
@@ -110,6 +104,18 @@ h3 {
 .carouselButton:disabled {
   color: lightgray;
   border: none;
+}
+
+.divToPDF {
+  margin-bottom: 24px;
+}
+
+.divToPDF h2 {
+  text-align: center; /* center graph title */
+}
+
+.saveButtons {
+  margin-top: 24px;
 }
 
 .page {
@@ -155,9 +161,6 @@ h3 {
 }
 .graph-name {
   align-self: center;
-}
-.saveButtons {
-  margin-top: 24px;
 }
 
 /* form */

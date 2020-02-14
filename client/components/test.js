@@ -9,7 +9,6 @@ import {averageColumnData} from '../helpers/averageColumnData'
 
 // const finalDecision = (columnData, scatterData, type, columns) => {
 const finalDecision = (columnData, scatterData, type, columns, averageCD) => {
-  console.log('I am at final decision func')
   let testData = {
     type: type,
     columns: columns,
