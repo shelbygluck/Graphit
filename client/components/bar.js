@@ -19,7 +19,7 @@ export class BarGraphComponent extends Component {
     if (this.props.avg === true) {
       labels = this.props.graph.averageCD[this.props.graph.columns[1]]
       data = this.props.graph.averageCD[this.props.graph.columns[0]]
-      title = 'Avgerage ' + title
+      title = 'Average ' + title
     }
     if (this.props.graph.name) {
       title = this.props.graph.name
