@@ -6,6 +6,7 @@ import {isNumerical} from '../helpers/numerical'
 import {isContinuous} from '../helpers/continuous'
 import {isSDLow} from '../helpers/sd'
 import {averageColumnData} from '../helpers/averageColumnData'
+import {isUnique} from '../helpers/isUnique'
 
 const finalDecision = (columnData, scatterData, type, columns, averageCD) => {
   let testData = {
@@ -55,21 +56,56 @@ function chooseGraph(columnData, column1, column2, option) {
     return ['avg-bar', 'avg-pie']
   } else if (option === 'compares to') {
     if (isNumerical(columnData[column1]) && isNumerical(columnData[column2])) {
-      return ['scatter', 'line']
+      if (isUnique(columnData[column2])) {
+        return ['scatter', 'line', 'bar']
+      }
+      return ['scatter', 'avg-line', 'avg-bar']
     } else {
-      return ['bar', 'line']
+      if (isUnique(columnData[column2])) {
+        return ['bar', 'line']
+      }
+      return ['avg-bar', 'avg-line']
     }
   } else if (option === 'is influenced by') {
     if (!isNumerical(columnData[column1])) {
-      return ['scatter', 'bar']
+      console.log('DECISION 1') // scatter does NOT work for this data
+      if (isUnique(columnData[column2])) {
+        return ['bar', 'line', 'pie']
+      }
+      return ['avg-bar', 'avg-line', 'avg-pie']
     }
+
     if (!isContinuous(columnData[column1])) {
-      return ['scatter', 'line']
+      console.log('DECISION 2')
+      if (
+        isNumerical(columnData[column1]) &&
+        isNumerical(columnData[column2])
+      ) {
+        if (isUnique(columnData[column2])) {
+          return ['scatter', 'line', 'bar']
+        }
+        return ['scatter', 'avg-line', 'avg-bar']
+      } else {
+        if (isUnique(columnData[column2])) {
+          return ['bar', 'line']
+        }
+        return ['avg-bar', 'avg-line']
+      }
     }
+
     if (isSDLow(columnData[column1])) {
-      return ['line', 'bar']
+      console.log('DECISION 3')
+      if (isUnique(columnData[column2])) {
+        return ['line', 'bar']
+      }
+      return ['avg-line', 'avg-bar']
     }
-    return ['bar', 'line']
+
+    if (isUnique(columnData[column2])) {
+      return ['bar', 'line']
+    }
+    console.log('DECISION 4')
+    return ['avg-bar', 'avg-line']
   }
 }
 
