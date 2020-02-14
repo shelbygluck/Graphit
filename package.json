@@ -68,6 +68,7 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.8.6",
     "react-loadingg": "^1.7.1",
+    "react-pose": "^4.0.10",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
