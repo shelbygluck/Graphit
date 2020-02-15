@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas'
 const pdfConverter = require('jspdf')
 import SaveGraph from './save-graph'
 import SaveButtons from './saveButtons'
+import {gotGraphImageData} from '../store/graph'
 
 export class Scatterplot extends React.Component {
   constructor() {
@@ -64,4 +65,4 @@ const mapStateToProps = state => ({
   graph: state.graph
 })
 
-export default connect(mapStateToProps, null)(Scatterplot)
+export default connect(mapStateToProps)(Scatterplot)

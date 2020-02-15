@@ -20,13 +20,16 @@ class OutputGraph extends React.Component {
 
   saveAsPDF = () => {
     console.log('save as pdf...!')
-    let input = window.document.getElementsByClassName('divToPDF2')[0]
+    let input = window.document.getElementsByClassName('divToPDF')[0]
     html2canvas(input)
       .then(canvas => {
         console.log(canvas)
-        const imgData = canvas.toDataURL('image/png')
+        const imgData = canvas.toDataURL('image/jpeg')
         const pdf = new pdfConverter('l', 'pt')
-        pdf.addImage(imgData, 'JPEG', 15, 110, 800, 250)
+        const imgProps = pdf.getImageProperties(imgData)
+        const pdfWidth = pdf.internal.pageSize.getWidth()
+        const pdfHeight = imgProps.height * pdfWidth / imgProps.width
+        pdf.addImage(imgData, 0, 0)
         pdf.save('test.pdf')
       })
       .catch(err => console.log(err.message))
@@ -64,7 +67,6 @@ class OutputGraph extends React.Component {
   render() {
     return (
       <Grid
-        className="divToPDF2"
         container
         direction="column"
         justify="center"

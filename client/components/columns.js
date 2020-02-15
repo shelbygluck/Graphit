@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import {gotUploadedFile, gotUserOptions} from '../store/upload'
+import {clearGraph} from '../store/graph'
 import {
   Grid,
   Select,
@@ -83,6 +84,7 @@ class Columns extends React.Component {
 
   clearUploadedFile = () => {
     this.props.uploadFile(null)
+    this.props.clearGraph(null)
   }
 
   displayOutput = () => {
@@ -177,6 +179,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   uploadFile: file => dispatch(gotUploadedFile(file)),
+  clearGraph: () => dispatch(clearGraph()),
   setUserOptions: options => dispatch(gotUserOptions(options))
 })
 

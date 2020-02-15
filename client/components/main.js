@@ -15,17 +15,27 @@ class Main extends Component {
 
   render() {
     return (
-      <Grid container justify="center">
-        <Grid item sm={11}>
-          {this.props.uploadedFile === null ? <Upload /> : <Columns />}
+      <Fragment>
+        <Grid container justify="center">
+          <Grid item lg={10}>
+            {this.props.uploadedFile === null ? <Upload /> : <Columns />}
+          </Grid>
         </Grid>
-      </Grid>
+        {this.props.graph.type.length < 1 ? (
+          <div id="backgroundBar">
+            <Pose />
+          </div>
+        ) : (
+          ' '
+        )}
+      </Fragment>
     )
   }
 }
 
 const mapState = state => ({
-  uploadedFile: state.upload.file
+  uploadedFile: state.upload.file,
+  graph: state.graph
 })
 
 export default connect(mapState)(Main)
