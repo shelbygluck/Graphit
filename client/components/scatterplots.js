@@ -1,11 +1,7 @@
 import React from 'react'
 import {Scatter} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import html2canvas from 'html2canvas'
-const pdfConverter = require('jspdf')
-import SaveGraph from './save-graph'
-import SaveButtons from './saveButtons'
-import {gotGraphImageData} from '../store/graph'
+import DownloadButton from './downloadButton'
 
 export class Scatterplot extends React.Component {
   constructor() {
@@ -20,42 +16,46 @@ export class Scatterplot extends React.Component {
       title = this.props.graph.name
     }
     return (
-      <div className="divToPDF">
-        <h2>{title}</h2>
-        <Scatter
-          data={{
-            labels: 'Scatter Dataset',
-            datasets: [
-              {
-                label: title,
-                data: this.props.graph.scatterData,
-                backgroundColor: 'navy'
-              }
-            ]
-          }}
-          options={{
-            scales: {
-              xAxes: [
+      <div className={this.props.fullscreen && 'fullscreen'}>
+        <div className={this.props.fullscreen ? 'graph printPDF' : 'graph'}>
+          <h2>{title}</h2>
+          <Scatter
+            className="chart-js"
+            data={{
+              labels: 'Scatter Dataset',
+              datasets: [
                 {
-                  type: 'linear',
-                  position: 'bottom',
-                  scaleLabel: {
-                    display: true,
-                    labelString: this.props.graph.columns[0]
-                  }
-                }
-              ],
-              yAxes: [
-                {
-                  scaleLabel: {
-                    display: true,
-                    labelString: this.props.graph.columns[1]
-                  }
+                  label: title,
+                  data: this.props.graph.scatterData,
+                  backgroundColor: 'navy'
                 }
               ]
-            }
-          }}
-        />
+            }}
+            options={{
+              scales: {
+                xAxes: [
+                  {
+                    type: 'linear',
+                    position: 'bottom',
+                    scaleLabel: {
+                      display: true,
+                      labelString: this.props.graph.columns[0]
+                    }
+                  }
+                ],
+                yAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      labelString: this.props.graph.columns[1]
+                    }
+                  }
+                ]
+              }
+            }}
+          />
+        </div>
+        {this.props.fullscreen && <DownloadButton />}
       </div>
     )
   }

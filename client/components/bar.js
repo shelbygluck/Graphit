@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {Bar} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import html2canvas from 'html2canvas'
-const pdfConverter = require('jspdf')
-import SaveGraph from './save-graph'
+import DownloadButton from './downloadButton'
 
 export class BarGraphComponent extends Component {
   constructor() {
@@ -25,29 +23,32 @@ export class BarGraphComponent extends Component {
       title = this.props.graph.name
     }
     return (
-      <div className="divToPDF">
-        <h2>{title}</h2>
-        <Bar
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                label: `${this.props.graph.columns[0]}`,
-                backgroundColor: '#fea49f',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: data
+      <div className={this.props.fullscreen && 'fullscreen'}>
+        <div className={this.props.fullscreen ? 'graph printPDF' : 'graph'}>
+          <h2>{title}</h2>
+          <Bar
+            data={{
+              labels: labels,
+              datasets: [
+                {
+                  label: `${this.props.graph.columns[0]}`,
+                  backgroundColor: '#fea49f',
+                  borderColor: 'rgba(0,0,0,1)',
+                  borderWidth: 2,
+                  data: data
+                }
+              ]
+            }}
+            height={100}
+            options={{
+              legend: {
+                display: true,
+                position: 'right'
               }
-            ]
-          }}
-          height={100}
-          options={{
-            legend: {
-              display: true,
-              position: 'right'
-            }
-          }}
-        />
+            }}
+          />
+        </div>
+        {this.props.fullscreen && <DownloadButton />}
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
-import {Grid} from '@material-ui/core'
+import {Grid, Modal} from '@material-ui/core'
 import BarGraphComponent from './bar'
 import PieChartComponent from './pie'
 import LineChart from './line'
@@ -14,25 +14,21 @@ class OutputGraph extends React.Component {
   constructor() {
     super()
     this.state = {
-      savedGraph: false
+      savedGraph: false,
+      open: false
     }
   }
 
-  saveAsPDF = () => {
-    console.log('save as pdf...!')
-    let input = window.document.getElementsByClassName('divToPDF')[0]
-    html2canvas(input)
-      .then(canvas => {
-        console.log(canvas)
-        const imgData = canvas.toDataURL('image/jpeg')
-        const pdf = new pdfConverter('l', 'pt')
-        const imgProps = pdf.getImageProperties(imgData)
-        const pdfWidth = pdf.internal.pageSize.getWidth()
-        const pdfHeight = imgProps.height * pdfWidth / imgProps.width
-        pdf.addImage(imgData, 0, 0)
-        pdf.save('test.pdf')
-      })
-      .catch(err => console.log(err.message))
+  handleOpen = () => {
+    this.setState({
+      open: true
+    })
+  }
+
+  handleClose = () => {
+    this.setState({
+      open: false
+    })
   }
 
   saveGraph = () => {
@@ -41,22 +37,54 @@ class OutputGraph extends React.Component {
     })
   }
 
-  renderGraph = graphType => {
+  renderGraph = (graphType, fullscreen) => {
     switch (graphType) {
       case 'pie':
-        return <PieChartComponent avg={false} graphtype={graphType} />
+        return (
+          <PieChartComponent
+            avg={false}
+            graphtype={graphType}
+            fullscreen={fullscreen}
+          />
+        )
       case 'avg-pie':
-        return <PieChartComponent avg={true} graphtype={graphType} />
+        return (
+          <PieChartComponent
+            avg={true}
+            graphtype={graphType}
+            fullscreen={fullscreen}
+          />
+        )
       case 'bar':
-        return <BarGraphComponent avg={false} graphtype={graphType} />
+        return (
+          <BarGraphComponent
+            avg={false}
+            graphtype={graphType}
+            fullscreen={fullscreen}
+          />
+        )
       case 'avg-bar':
-        return <BarGraphComponent avg={true} graphtype={graphType} />
+        return (
+          <BarGraphComponent
+            avg={true}
+            graphtype={graphType}
+            fullscreen={fullscreen}
+          />
+        )
       case 'line':
-        return <LineChart avg={false} graphtype={graphType} />
+        return (
+          <LineChart
+            avg={false}
+            graphtype={graphType}
+            fullscreen={fullscreen}
+          />
+        )
       case 'avg-line':
-        return <LineChart avg={true} graphtype={graphType} />
+        return (
+          <LineChart avg={true} graphtype={graphType} fullscreen={fullscreen} />
+        )
       case 'scatter':
-        return <Scatterplot graphtype={graphType} />
+        return <Scatterplot graphtype={graphType} fullscreen={fullscreen} />
       default:
         return (
           <p>Could not find the appropriate graph. Try different data sets!</p>
@@ -73,9 +101,18 @@ class OutputGraph extends React.Component {
         alignItems="stretch"
         spacing={2}
       >
-        <Grid item>{this.renderGraph(this.props.graphType)}</Grid>
         <Grid item>
-          <SaveButtons saveAsPDF={this.saveAsPDF} saveGraph={this.saveGraph} />
+          {this.renderGraph(this.props.graphType)}
+          <Modal
+            className="modal"
+            open={this.state.open}
+            onClose={this.handleClose}
+          >
+            {this.renderGraph(this.props.graphType, this.state.open)}
+          </Modal>
+        </Grid>
+        <Grid item>
+          <SaveButtons saveAsPDF={this.handleOpen} saveGraph={this.saveGraph} />
         </Grid>
         <Grid item>
           {this.state.savedGraph === true && (

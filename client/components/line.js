@@ -1,8 +1,7 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import html2canvas from 'html2canvas'
-import SaveGraph from './save-graph'
+import DownloadButton from './downloadButton'
 
 export class LineChart extends React.Component {
   constructor() {
@@ -24,35 +23,38 @@ export class LineChart extends React.Component {
       title = this.props.graph.name
     }
     return (
-      <div className="divToPDF">
-        <h2>{title}</h2>
-        <Line
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                label: `${this.props.graph.columns[0]}`,
-                fill: false,
-                lineTension: 0.5,
-                backgroundColor: '#478559',
-                borderColor: '#161748',
-                borderWidth: 2,
-                data: data
+      <div className={this.props.fullscreen && 'fullscreen'}>
+        <div className={this.props.fullscreen ? 'graph printPDF' : 'graph'}>
+          <h2>{title}</h2>
+          <Line
+            data={{
+              labels: labels,
+              datasets: [
+                {
+                  label: `${this.props.graph.columns[0]}`,
+                  fill: false,
+                  lineTension: 0.5,
+                  backgroundColor: '#478559',
+                  borderColor: '#161748',
+                  borderWidth: 2,
+                  data: data
+                }
+              ]
+            }}
+            options={{
+              title: {
+                display: true,
+                text: title,
+                fontSize: 20
+              },
+              legend: {
+                display: true,
+                position: 'right'
               }
-            ]
-          }}
-          options={{
-            title: {
-              display: true,
-              text: title,
-              fontSize: 20
-            },
-            legend: {
-              display: true,
-              position: 'right'
-            }
-          }}
-        />
+            }}
+          />
+        </div>
+        {this.props.fullscreen && <DownloadButton />}
       </div>
     )
   }

@@ -98,6 +98,7 @@ class Columns extends React.Component {
   render() {
     return (
       <Fragment>
+        {this.props.output.length > 0 && this.displayOutput()}
         <Paper className="paper-container" elevation={3}>
           <Grid
             container
@@ -166,7 +167,6 @@ class Columns extends React.Component {
             </Grid>
           </Grid>
         </Paper>
-        {this.props.output.length > 0 && this.displayOutput()}
       </Fragment>
     )
   }

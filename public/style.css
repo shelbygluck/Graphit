@@ -107,16 +107,26 @@ h3 {
   border: none;
 }
 
-.divToPDF {
+.graph {
   margin-bottom: 24px;
 }
 
-.divToPDF h2 {
+.graph h2 {
   text-align: center; /* center graph title */
 }
 
 .saveButtons {
   margin-top: 24px;
+}
+
+/* single graph */
+.modal {
+  overflow: scroll;
+}
+
+.modal .fullscreen {
+  background-color: white;
+  margin: 0 5%;
 }
 
 .page {

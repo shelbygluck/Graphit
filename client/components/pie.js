@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Pie} from 'react-chartjs-2'
-import html2canvas from 'html2canvas'
-import SaveButtons from './saveButtons'
+import DownloadButton from './downloadButton'
 
 export class PieChartComponent extends Component {
   constructor() {
@@ -24,44 +23,47 @@ export class PieChartComponent extends Component {
       title = this.props.graph.name
     }
     return (
-      <div className="divToPDF">
-        <h2>{title}</h2>
-        <Pie
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                data: data,
-                backgroundColor: [
-                  '#161748',
-                  '#478559',
-                  '#f95d9b',
-                  '#39a0ca',
-                  '#fea49f',
-                  '#fbaf08',
-                  '#51d0de',
-                  '#bf4aa8',
-                  '#c3d7c47',
-                  '#e05915',
-                  '#5252d4',
-                  '#8bf0ba',
-                  '#0e0fed',
-                  '#94f0f1',
-                  '#f2b1d8',
-                  '#ffdc6a',
-                  '#dcc7aa'
-                ],
-                options: {
-                  title: {
-                    display: true,
-                    text: 'Custom Chart Title'
+      <div className={this.props.fullscreen && 'fullscreen'}>
+        <div className={this.props.fullscreen ? 'graph printPDF' : 'graph'}>
+          <h2>{title}</h2>
+          <Pie
+            data={{
+              labels: labels,
+              datasets: [
+                {
+                  data: data,
+                  backgroundColor: [
+                    '#161748',
+                    '#478559',
+                    '#f95d9b',
+                    '#39a0ca',
+                    '#fea49f',
+                    '#fbaf08',
+                    '#51d0de',
+                    '#bf4aa8',
+                    '#c3d7c47',
+                    '#e05915',
+                    '#5252d4',
+                    '#8bf0ba',
+                    '#0e0fed',
+                    '#94f0f1',
+                    '#f2b1d8',
+                    '#ffdc6a',
+                    '#dcc7aa'
+                  ],
+                  options: {
+                    title: {
+                      display: true,
+                      text: 'Custom Chart Title'
+                    }
                   }
                 }
-              }
-            ]
-          }}
-          height={100}
-        />
+              ]
+            }}
+            height={100}
+          />
+        </div>
+        {this.props.fullscreen && <DownloadButton />}
       </div>
     )
   }
