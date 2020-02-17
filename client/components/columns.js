@@ -18,6 +18,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import Submit from './submit'
 import MainComponent from './mainComponent'
+import {EatLoading} from 'react-loadingg'
+import Loading from './loading'
 
 class Columns extends React.Component {
   constructor() {
@@ -25,7 +27,8 @@ class Columns extends React.Component {
     this.state = {
       column1: '',
       column2: '',
-      option: ''
+      option: '',
+      done: false
     }
   }
 
@@ -88,9 +91,11 @@ class Columns extends React.Component {
   }
 
   displayOutput = () => {
+    //this.setState({done: false})
+    setTimeout(() => this.setState({done: true}), 1200)
     return (
       <Paper className="paper-container" elevation={3}>
-        <MainComponent />
+        <MainComponent />}
       </Paper>
     )
   }
@@ -98,7 +103,7 @@ class Columns extends React.Component {
   render() {
     return (
       <Fragment>
-        {this.props.output.length > 0 && this.displayOutput()}
+        {this.props.output.length > 0 && <Loading />}
         <Paper className="paper-container" elevation={3}>
           <Grid
             container
