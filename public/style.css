@@ -120,6 +120,10 @@ h3 {
   margin-top: 24px;
 }
 
+.loading-container {
+  min-height: 550px;
+}
+
 /* single graph */
 .modal {
   overflow: scroll;

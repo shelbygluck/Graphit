@@ -20,7 +20,9 @@ export default class Loading extends React.Component {
     return (
       <div>
         {!this.state.done ? (
-          <EatLoading color="blue" size="large" />
+          <Paper className="loading-container" elevation={3}>
+            <EatLoading color="blue" size="large" />
+          </Paper>
         ) : (
           <Paper className="paper-container" elevation={3}>
             <MainComponent />
