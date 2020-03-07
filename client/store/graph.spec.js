@@ -31,7 +31,7 @@ describe('upload thunk creators', () => {
     store.clearActions()
   })
 
-  describe('columns', () => {
+  xdescribe('columns', () => {
     it('eventually dispatches the GOT COLUMNS action', async () => {
       await store.dispatch('dummy graph')
       const actions = store.getActions()
