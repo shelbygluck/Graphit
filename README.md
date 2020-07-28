@@ -2,6 +2,8 @@
 
 Visit: https://gh-graphit.herokuapp.com/ 👀
 
+Need a CSV to visualize? Try this quick download from https://www.kaggle.com/neuromusic/avocado-prices/data.
+
 Graphit was built by a team of 4 software engineering students as part of the immersive Grace Hopper Program at Fullstack Academy of Code, in New York City.
 
 ➤ Anastasiia Burlya
